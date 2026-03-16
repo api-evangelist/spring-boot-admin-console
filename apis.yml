@@ -10,7 +10,7 @@ tags:
 - Java
 - Microservices
 created: '2024-01-01'
-modified: '2024-01-01'
+modified: '2026-03-16'
 apis:
 - name: Spring Boot Admin Server API
   description: The main API for the Spring Boot Admin server that provides endpoints for registering applications, retrieving application information, and monitoring status.
