@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/codecentric/spring-boot-admin/schema/instance-event",
+  "title": "Spring Boot Admin Instance Event",
+  "description": "A lifecycle event for a Spring Boot Admin instance, delivered via Server-Sent Events (SSE) from the /instances/events endpoint.",
+  "type": "object",
+  "properties": {
+    "instance": {
+      "type": "string",
+      "description": "The instance ID this event pertains to.",
+      "example": "abc123def456"
+    },
+    "version": {
+      "type": "integer",
+      "description": "Monotonically increasing version number for ordering events.",
+      "minimum": 0
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this event occurred."
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of lifecycle event.",
+      "enum": [
+        "REGISTERED",
+        "DEREGISTERED",
+        "STATUS_CHANGED",
+        "INFO_CHANGED",
+        "ENDPOINTS_DETECTED"
+      ]
+    },
+    "statusInfo": {
+      "type": "object",
+      "description": "New status information (present for STATUS_CHANGED events).",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["UP", "DOWN", "OUT_OF_SERVICE", "UNKNOWN", "RESTRICTED", "OFFLINE"]
+        },
+        "details": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "info": {
+      "type": "object",
+      "description": "Updated application info payload (present for INFO_CHANGED events).",
+      "additionalProperties": true
+    }
+  },
+  "required": ["instance", "version", "timestamp", "type"]
+}

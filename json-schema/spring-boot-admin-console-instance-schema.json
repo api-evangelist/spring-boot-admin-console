@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/codecentric/spring-boot-admin/schema/instance",
+  "title": "Spring Boot Admin Instance",
+  "description": "A single registered Spring Boot application instance in Spring Boot Admin. Represents a running application that has registered itself with the Admin server and is being monitored.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique instance identifier assigned by the Admin server upon registration.",
+      "example": "abc123def456"
+    },
+    "version": {
+      "type": "integer",
+      "description": "Optimistic locking version number, incremented on each state change."
+    },
+    "registration": {
+      "$ref": "#/$defs/ApplicationRegistration"
+    },
+    "registered": {
+      "type": "boolean",
+      "description": "Whether this instance is currently registered and being monitored."
+    },
+    "statusInfo": {
+      "$ref": "#/$defs/StatusInfo"
+    },
+    "statusTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the most recent status change."
+    },
+    "info": {
+      "type": "object",
+      "description": "Application metadata collected from the /info Actuator endpoint (build version, git commit, etc.).",
+      "additionalProperties": true
+    },
+    "endpoints": {
+      "type": "array",
+      "description": "Actuator endpoints discovered for this instance.",
+      "items": {
+        "$ref": "#/$defs/Endpoint"
+      }
+    },
+    "buildVersion": {
+      "type": ["string", "null"],
+      "description": "Build version string from the /info Actuator endpoint, if available."
+    },
+    "tags": {
+      "type": "object",
+      "description": "Custom metadata tags for this instance.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["id", "registration", "registered"],
+  "$defs": {
+    "ApplicationRegistration": {
+      "title": "Application Registration",
+      "description": "The registration payload submitted by the Spring Boot application client.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Application name, typically the value of spring.application.name.",
+          "example": "my-spring-app"
+        },
+        "managementUrl": {
+          "type": "string",
+          "description": "Base URL of the application's Actuator management endpoints.",
+          "example": "http://localhost:8081/actuator"
+        },
+        "healthUrl": {
+          "type": "string",
+          "description": "Direct URL to the /health Actuator endpoint.",
+          "example": "http://localhost:8081/actuator/health"
+        },
+        "serviceUrl": {
+          "type": "string",
+          "description": "Base URL of the application service for UI linking.",
+          "example": "http://localhost:8081"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Additional metadata key-value pairs.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["name", "managementUrl", "healthUrl", "serviceUrl"]
+    },
+    "StatusInfo": {
+      "title": "Status Info",
+      "description": "Current status of the instance as determined by polling the health endpoint.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Current instance status.",
+          "enum": ["UP", "DOWN", "OUT_OF_SERVICE", "UNKNOWN", "RESTRICTED", "OFFLINE"]
+        },
+        "details": {
+          "type": "object",
+          "description": "Component health details from the health endpoint response.",
+          "additionalProperties": true
+        }
+      },
+      "required": ["status"]
+    },
+    "Endpoint": {
+      "title": "Actuator Endpoint",
+      "description": "A single Actuator endpoint available on the instance.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Endpoint identifier (health, metrics, loggers, env, etc.).",
+          "example": "health"
+        },
+        "url": {
+          "type": "string",
+          "description": "Full URL to this endpoint.",
+          "example": "http://localhost:8081/actuator/health"
+        }
+      },
+      "required": ["id", "url"]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "@context": {
+    "@vocab": "https://codecentric.github.io/spring-boot-admin/schema/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "sba": "https://codecentric.github.io/spring-boot-admin/schema/",
+
+    "Application": "sba:Application",
+    "Instance": "sba:Instance",
+    "Registration": "sba:Registration",
+    "StatusInfo": "sba:StatusInfo",
+    "InstanceEvent": "sba:InstanceEvent",
+    "Endpoint": "sba:Endpoint",
+
+    "id": { "@id": "schema:identifier", "@type": "xsd:string" },
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "version": { "@id": "sba:version", "@type": "xsd:integer" },
+
+    "registered": { "@id": "sba:registered", "@type": "xsd:boolean" },
+    "registration": { "@id": "sba:registration", "@type": "@id" },
+    "statusInfo": { "@id": "sba:statusInfo", "@type": "@id" },
+    "statusTimestamp": { "@id": "sba:statusTimestamp", "@type": "xsd:dateTime" },
+    "info": { "@id": "sba:info", "@type": "@id" },
+    "endpoints": { "@id": "sba:endpoints", "@type": "@id", "@container": "@list" },
+    "buildVersion": { "@id": "sba:buildVersion", "@type": "xsd:string" },
+    "tags": { "@id": "sba:tags", "@type": "@id" },
+    "instances": { "@id": "sba:instances", "@type": "@id", "@container": "@list" },
+    "status": { "@id": "sba:status", "@type": "xsd:string" },
+    "details": { "@id": "sba:details", "@type": "@id" },
+
+    "managementUrl": { "@id": "sba:managementUrl", "@type": "xsd:anyURI" },
+    "healthUrl": { "@id": "sba:healthUrl", "@type": "xsd:anyURI" },
+    "serviceUrl": { "@id": "sba:serviceUrl", "@type": "xsd:anyURI" },
+    "metadata": { "@id": "sba:metadata", "@type": "@id" },
+
+    "instance": { "@id": "sba:instance", "@type": "xsd:string" },
+    "timestamp": { "@id": "sba:timestamp", "@type": "xsd:dateTime" },
+    "type": { "@id": "sba:eventType", "@type": "xsd:string" },
+
+    "url": { "@id": "schema:url", "@type": "xsd:anyURI" }
+  }
+}

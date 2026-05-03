@@ -1,0 +1,76 @@
+extends: spectral:oas
+rules:
+  sba-operationid-required:
+    description: All Spring Boot Admin API operations must have an operationId.
+    message: "OperationId is required for every operation."
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: operationId
+      function: truthy
+
+  sba-operationid-camelcase:
+    description: OperationIds must use camelCase.
+    message: "OperationId '{{value}}' must use camelCase."
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  sba-tags-required:
+    description: All operations must have at least one tag.
+    message: "Operation must have at least one tag."
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: tags
+      function: truthy
+
+  sba-get-response-200:
+    description: All GET operations must define a 200 response.
+    message: "GET operation must define a 200 OK response."
+    severity: error
+    given: "$.paths[*].get.responses"
+    then:
+      field: "200"
+      function: truthy
+
+  sba-delete-response-204:
+    description: DELETE operations should return 204 No Content on success.
+    message: "DELETE operation should define a 204 No Content response."
+    severity: warn
+    given: "$.paths[*].delete.responses"
+    then:
+      field: "204"
+      function: truthy
+
+  sba-schema-description:
+    description: All named schemas should have a description.
+    message: "Schema '{{property}}' is missing a description."
+    severity: warn
+    given: "$.components.schemas[*]"
+    then:
+      field: description
+      function: truthy
+
+  sba-instance-id-path-param:
+    description: Instance ID path parameters should be named 'id'.
+    message: "Instance path parameter should be named 'id'."
+    severity: info
+    given: "$.paths['/instances/{id}'][*].parameters[*]"
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        match: "^id$"
+
+  sba-status-enum-defined:
+    description: Status fields in response schemas should define an enum of valid values.
+    message: "Status field should define valid Spring Boot Admin status enum values."
+    severity: warn
+    given: "$.components.schemas[*].properties.status"
+    then:
+      field: enum
+      function: truthy

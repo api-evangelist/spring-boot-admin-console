@@ -1,0 +1,172 @@
+name: Spring Boot Admin Console Vocabulary
+description: >-
+  Domain vocabulary for Spring Boot Admin covering application registration,
+  instance management, health monitoring, event lifecycle, and notification
+  integrations.
+version: 3.3.0
+created: '2026-05-02'
+modified: '2026-05-02'
+tags:
+  - Spring Boot Admin
+  - Monitoring
+  - Microservices
+  - Administration
+
+terms:
+  # Core Concepts
+  - term: Application
+    definition: >-
+      A logical grouping of one or more instances sharing the same spring.application.name.
+      In Spring Boot Admin, applications are the primary unit for organizing and
+      displaying registered services. A single application may have multiple instances
+      running simultaneously.
+    category: Domain Object
+    relatedTerms: [Instance, ApplicationRegistry, Status]
+
+  - term: Instance
+    definition: >-
+      A single registered and running Spring Boot application process. Each instance
+      has a unique Admin-assigned ID and registration metadata including management URL,
+      health URL, and service URL. Instances are polled periodically for health status.
+    category: Domain Object
+    relatedTerms: [Application, Registration, StatusInfo, Endpoint]
+
+  - term: Registration
+    definition: >-
+      The metadata submitted by a Spring Boot application when it registers with the
+      Admin server. Contains the application name, management base URL, health URL,
+      service URL, and optional key-value metadata. Registration is typically performed
+      automatically by the spring-boot-admin-starter-client dependency.
+    category: Domain Object
+    relatedTerms: [Instance, spring-boot-admin-starter-client]
+
+  - term: StatusInfo
+    definition: >-
+      The current health status of an instance as determined by polling the instance's
+      /actuator/health endpoint. Contains a status code (UP, DOWN, etc.) and the full
+      details returned by the health endpoint.
+    category: Domain Object
+    relatedTerms: [Status, HealthIndicator, Instance]
+
+  # Status Values
+  - term: Status
+    definition: >-
+      An enumeration of possible instance states in Spring Boot Admin. UP means the
+      application is healthy. DOWN means one or more health indicators report failure.
+      OUT_OF_SERVICE means the application is intentionally offline. UNKNOWN means
+      status could not be determined. RESTRICTED means the application is partially
+      available. OFFLINE means the Admin server cannot reach the instance.
+    category: Status
+    values: [UP, DOWN, OUT_OF_SERVICE, UNKNOWN, RESTRICTED, OFFLINE]
+
+  # Events
+  - term: Instance Event
+    definition: >-
+      A lifecycle event emitted by Spring Boot Admin when an instance's state changes.
+      Events are stored in an EventStore and delivered to subscribers via Server-Sent
+      Events (SSE). Used to trigger notifications and update the UI in real time.
+    category: Events
+    relatedTerms: [EventStore, SSE, Notification]
+
+  - term: REGISTERED
+    definition: >-
+      Event type emitted when a new instance successfully registers with the Admin server.
+      Triggers initial health polling and endpoint discovery.
+    category: Event Type
+    relatedTerms: [Instance Event, Registration]
+
+  - term: DEREGISTERED
+    definition: >-
+      Event type emitted when an instance is removed from the Admin server, either
+      by explicit deregistration or by expiry of its registration lease.
+    category: Event Type
+    relatedTerms: [Instance Event, Registration]
+
+  - term: STATUS_CHANGED
+    definition: >-
+      Event type emitted when an instance's health status changes (e.g., from UP to DOWN
+      or from UNKNOWN to UP). Triggers notifications to configured channels.
+    category: Event Type
+    relatedTerms: [Instance Event, StatusInfo, Notification]
+
+  - term: INFO_CHANGED
+    definition: >-
+      Event type emitted when the data from an instance's /actuator/info endpoint changes
+      (e.g., after a deployment with a new build version).
+    category: Event Type
+    relatedTerms: [Instance Event]
+
+  - term: ENDPOINTS_DETECTED
+    definition: >-
+      Event type emitted when the set of Actuator endpoints available on an instance
+      changes (e.g., endpoints added or removed after a configuration change).
+    category: Event Type
+    relatedTerms: [Instance Event, Endpoint]
+
+  # Infrastructure
+  - term: EventStore
+    definition: >-
+      An ordered, persistent store for all instance lifecycle events. The default
+      implementation uses an in-memory ring buffer. Supports custom implementations
+      backed by databases or message brokers.
+    category: Infrastructure
+    relatedTerms: [Instance Event, SSE]
+
+  - term: ActuatorProxy
+    definition: >-
+      Spring Boot Admin's capability to proxy HTTP requests from the Admin UI through
+      to individual instance Actuator endpoints. Enables the Admin UI to display
+      health details, metrics, loggers, and other Actuator data without direct
+      browser-to-instance connectivity.
+    category: Infrastructure
+    relatedTerms: [Instance, Endpoint]
+
+  - term: spring-boot-admin-starter-client
+    definition: >-
+      Spring Boot auto-configuration dependency that automatically registers the
+      application with a configured Spring Boot Admin server on startup and
+      deregisters on shutdown. Configured via spring.boot.admin.client.url.
+    category: Integration
+    relatedTerms: [Registration, Instance]
+
+  - term: Server-Sent Events (SSE)
+    definition: >-
+      HTTP protocol feature used by Spring Boot Admin for the /instances/events
+      endpoint. Pushes real-time instance lifecycle events from the server to
+      connected clients without polling.
+    category: Protocol
+    relatedTerms: [Instance Event, EventStore]
+
+  # Notifications
+  - term: Notification
+    definition: >-
+      An alert sent to an external channel when an instance's status changes to DOWN
+      or OFFLINE (or recovers). Spring Boot Admin supports email, Slack, PagerDuty,
+      OpsGenie, Microsoft Teams, Telegram, Hipchat, and webhook notifications.
+    category: Notifications
+    relatedTerms: [STATUS_CHANGED, NotificationTrigger]
+
+  - term: NotificationTrigger
+    definition: >-
+      Configuration defining which status transitions cause notifications to be sent.
+      By default, notifications are sent when an instance transitions to DOWN or
+      OFFLINE and when it recovers to UP.
+    category: Notifications
+    relatedTerms: [Notification, StatusInfo]
+
+  # UI Features
+  - term: Wall View
+    definition: >-
+      The default Spring Boot Admin UI view showing all registered applications as
+      tiles with their current status. Provides at-a-glance visibility into the
+      health of the entire service fleet.
+    category: UI
+    relatedTerms: [Application, Status]
+
+  - term: Journal
+    definition: >-
+      The Spring Boot Admin event log UI that shows all instance lifecycle events
+      in reverse chronological order. Useful for diagnosing recurring failures or
+      tracking deployment history.
+    category: UI
+    relatedTerms: [EventStore, Instance Event]

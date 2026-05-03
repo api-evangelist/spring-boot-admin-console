@@ -1,0 +1,98 @@
+{
+  "title": "Spring Boot Admin Console Domain Structure",
+  "description": "Hierarchical structure of the Spring Boot Admin domain model, showing applications, instances, events, and the Actuator proxy relationship.",
+  "structure": {
+    "SpringBootAdminServer": {
+      "description": "The central Admin server that manages registrations and provides the UI.",
+      "components": {
+        "ApplicationRegistry": {
+          "description": "Logical groupings of instances by application name.",
+          "api": "GET /applications",
+          "fields": {
+            "name": "String — application name (spring.application.name)",
+            "instances": "Collection<Instance> — all running instances",
+            "status": "ApplicationStatus — aggregate of instance statuses"
+          }
+        },
+        "InstanceRegistry": {
+          "description": "Individual registered Spring Boot application instances.",
+          "api": "GET /instances",
+          "fields": {
+            "id": "String — unique Admin-assigned ID",
+            "version": "Long — optimistic lock version",
+            "registration": "Registration — name, URLs, metadata",
+            "registered": "boolean — currently registered flag",
+            "statusInfo": "StatusInfo — current health status",
+            "statusTimestamp": "Instant — last status change time",
+            "info": "Info — data from /actuator/info",
+            "endpoints": "List<Endpoint> — available actuator endpoints",
+            "buildVersion": "BuildVersion — version from info",
+            "tags": "Map<String, String> — custom metadata"
+          },
+          "children": {
+            "Registration": {
+              "description": "Data submitted by the application client on startup.",
+              "fields": {
+                "name": "String — spring.application.name",
+                "managementUrl": "URL — base Actuator URL",
+                "healthUrl": "URL — /actuator/health URL",
+                "serviceUrl": "URL — application root URL",
+                "metadata": "Map<String, String> — extra metadata"
+              }
+            },
+            "StatusInfo": {
+              "description": "Health status polled from the instance's health endpoint.",
+              "fields": {
+                "status": "String — UP | DOWN | OUT_OF_SERVICE | UNKNOWN | RESTRICTED | OFFLINE",
+                "details": "Map<String, Object> — component health details"
+              }
+            }
+          }
+        },
+        "InstanceEventStore": {
+          "description": "Ordered event log of all instance lifecycle changes.",
+          "api": "GET /instances/events (SSE)",
+          "eventTypes": {
+            "REGISTERED": "New instance registered",
+            "DEREGISTERED": "Instance deregistered or expired",
+            "STATUS_CHANGED": "Health status changed (e.g., UP → DOWN)",
+            "INFO_CHANGED": "Application info updated",
+            "ENDPOINTS_DETECTED": "Actuator endpoints discovered or changed"
+          }
+        },
+        "ActuatorProxy": {
+          "description": "Proxies requests to managed instance Actuator endpoints.",
+          "api": "/instances/{id}/actuator/**",
+          "proxiedEndpoints": [
+            "health",
+            "info",
+            "metrics",
+            "env",
+            "loggers",
+            "threaddump",
+            "heapdump",
+            "scheduledtasks",
+            "conditions",
+            "configprops",
+            "mappings",
+            "liquibase",
+            "flyway"
+          ]
+        },
+        "NotificationService": {
+          "description": "Sends notifications on instance status changes.",
+          "channels": [
+            "Email (spring-boot-admin-server-notify-mail)",
+            "Slack",
+            "PagerDuty",
+            "OpsGenie",
+            "Microsoft Teams",
+            "Telegram",
+            "Hipchat",
+            "Webhooks"
+          ]
+        }
+      }
+    }
+  }
+}

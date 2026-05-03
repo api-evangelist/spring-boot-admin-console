@@ -1,0 +1,76 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/applications",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "name": "order-service",
+        "status": "UP",
+        "instances": [
+          {
+            "id": "a1b2c3d4e5f6",
+            "version": 4,
+            "registered": true,
+            "registration": {
+              "name": "order-service",
+              "managementUrl": "http://order-service:8080/actuator",
+              "healthUrl": "http://order-service:8080/actuator/health",
+              "serviceUrl": "http://order-service:8080",
+              "metadata": {
+                "startup": "2026-05-02T08:00:00Z"
+              }
+            },
+            "statusInfo": {
+              "status": "UP",
+              "details": {
+                "db": { "status": "UP" },
+                "diskSpace": { "status": "UP" }
+              }
+            },
+            "statusTimestamp": "2026-05-02T08:00:05Z",
+            "buildVersion": "2.1.0"
+          }
+        ]
+      },
+      {
+        "name": "payment-service",
+        "status": "DOWN",
+        "instances": [
+          {
+            "id": "f6e5d4c3b2a1",
+            "version": 7,
+            "registered": true,
+            "registration": {
+              "name": "payment-service",
+              "managementUrl": "http://payment-service:8080/actuator",
+              "healthUrl": "http://payment-service:8080/actuator/health",
+              "serviceUrl": "http://payment-service:8080"
+            },
+            "statusInfo": {
+              "status": "DOWN",
+              "details": {
+                "db": {
+                  "status": "DOWN",
+                  "details": {
+                    "error": "Connection refused: payment-db:5432"
+                  }
+                }
+              }
+            },
+            "statusTimestamp": "2026-05-02T09:15:30Z",
+            "buildVersion": "1.8.2"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,311 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Spring Boot Admin Microservice Fleet Management"
+  description: >-
+    Workflow capability for managing and monitoring a fleet of Spring Boot
+    microservices via Spring Boot Admin. Provides unified visibility into
+    application health, instance lifecycle, real-time metrics, logger
+    management, and environment inspection across all registered services.
+    Designed for platform engineers and SREs managing Spring Boot microservice
+    deployments.
+  tags:
+    - Spring Boot Admin
+    - Fleet Management
+    - Microservices
+    - SRE
+    - Observability
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SPRING_BOOT_ADMIN_URL: SPRING_BOOT_ADMIN_URL
+
+capability:
+  consumes:
+    - import: spring-boot-admin
+      location: ./shared/spring-boot-admin-console.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: fleet-management-api
+      description: "Unified REST API for Spring Boot microservice fleet management via Spring Boot Admin."
+      resources:
+        - path: /v1/applications
+          name: applications
+          description: "Registered application fleet overview"
+          operations:
+            - method: GET
+              name: list-applications
+              description: "List all registered applications with instance counts and status"
+              call: "spring-boot-admin.list-applications"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/applications/{name}
+          name: application-detail
+          description: "Specific application details"
+          operations:
+            - method: GET
+              name: get-application
+              description: "Get all instances for a named application"
+              call: "spring-boot-admin.get-application"
+              with:
+                name: "rest.name"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: deregister-application
+              description: "Deregister all instances of an application"
+              call: "spring-boot-admin.deregister-application"
+              with:
+                name: "rest.name"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/instances
+          name: instances
+          description: "Individual application instances"
+          operations:
+            - method: GET
+              name: list-instances
+              description: "List all registered instances with optional app filter"
+              call: "spring-boot-admin.list-instances"
+              with:
+                application: "rest.application"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/instances/{id}
+          name: instance-detail
+          description: "Single instance management"
+          operations:
+            - method: GET
+              name: get-instance
+              description: "Get full instance details"
+              call: "spring-boot-admin.get-instance"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: deregister-instance
+              description: "Deregister an instance"
+              call: "spring-boot-admin.deregister-instance"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/instances/{id}/health
+          name: instance-health
+          description: "Instance health status"
+          operations:
+            - method: GET
+              name: get-instance-health
+              description: "Get health status from instance Actuator"
+              call: "spring-boot-admin.get-instance-health"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/instances/{id}/metrics
+          name: instance-metrics
+          description: "Instance Micrometer metrics"
+          operations:
+            - method: GET
+              name: get-instance-metrics
+              description: "Get available metrics for an instance"
+              call: "spring-boot-admin.get-instance-metrics"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/instances/{id}/env
+          name: instance-environment
+          description: "Instance environment configuration"
+          operations:
+            - method: GET
+              name: get-instance-environment
+              description: "Get environment properties for an instance"
+              call: "spring-boot-admin.get-instance-environment"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/instances/{id}/loggers
+          name: instance-loggers
+          description: "Instance logger management"
+          operations:
+            - method: GET
+              name: get-instance-loggers
+              description: "Get logger configuration for an instance"
+              call: "spring-boot-admin.get-instance-loggers"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: set-instance-logger-level
+              description: "Set logger level for an instance at runtime"
+              call: "spring-boot-admin.set-instance-logger-level"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: fleet-management-mcp
+      transport: http
+      description: "MCP server for AI-assisted Spring Boot microservice fleet management."
+      tools:
+        - name: list-applications
+          description: "List all Spring Boot applications registered with the Admin server, including their health status and instance count"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "spring-boot-admin.list-applications"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-application
+          description: "Get details and all running instances for a specific application by name"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "spring-boot-admin.get-application"
+          with:
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-instances
+          description: "List all registered microservice instances, optionally filtered by application name"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "spring-boot-admin.list-instances"
+          with:
+            application: "tools.application"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-instance
+          description: "Get comprehensive details for a specific microservice instance by its Admin ID"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "spring-boot-admin.get-instance"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: check-instance-health
+          description: "Check the live health status of a specific microservice instance by proxying its Actuator health endpoint"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "spring-boot-admin.get-instance-health"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-instance-info
+          description: "Get build version, git commit, and runtime info for a specific microservice instance"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "spring-boot-admin.get-instance-info"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-instance-metrics
+          description: "Get available Micrometer metrics for a specific microservice instance"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "spring-boot-admin.get-instance-metrics"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: inspect-instance-environment
+          description: "Inspect all environment properties and configuration for a specific microservice instance"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "spring-boot-admin.get-instance-environment"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-instance-loggers
+          description: "Get current logger levels for a specific microservice instance to diagnose logging issues"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "spring-boot-admin.get-instance-loggers"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: set-instance-logger-level
+          description: "Change the log level for a logger on a specific instance at runtime without restart (e.g., set DEBUG for a troublesome service)"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "spring-boot-admin.set-instance-logger-level"
+          with:
+            id: "tools.id"
+            level: "tools.level"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: deregister-instance
+          description: "Deregister and remove a specific microservice instance from the Admin server"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "spring-boot-admin.deregister-instance"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
