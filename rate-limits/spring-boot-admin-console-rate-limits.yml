@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Spring Boot Admin Console
 providerId: spring-boot-admin-console
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Actuator
   - Administration
@@ -13,98 +14,22 @@ tags:
   - Monitoring
   - Spring Boot
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Spring Boot Admin Console API surface. Captures
-  per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values
-  to be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Spring Boot Admin is self-hosted open-source software. The project does not ship a built-in rate limiter; throttling, quotas, and retry behavior are entirely a function of the operator's deployment (reverse proxy, API gateway, or Spring Cloud Gateway / Resilience4j configuration). No vendor-published numeric limits exist.
+sources:
+  - https://github.com/codecentric/spring-boot-admin
+  - https://codecentric.github.io/spring-boot-admin/current/
+notes: No vendor-imposed rate limits. Limits depend entirely on the operator's chosen gateway, ingress, or Resilience4j configuration in front of the Admin Server.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Spring Boot Admin Server API
-      - Applications API
-      - Instances API
-      - Events API
-      - Notifications API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Spring Boot Admin Server API
-      - Applications API
-      - Instances API
-      - Events API
-      - Notifications API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Spring Boot Admin Server API
-      - Applications API
-      - Instances API
-      - Events API
-      - Notifications API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Spring Boot Admin Server API
-      - Applications API
-      - Instances API
-      - Events API
-      - Notifications API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Spring Boot Admin Server API
-      - Applications API
-      - Instances API
-      - Events API
-      - Notifications API
+  - name: Operator-Defined
+    scope: deployment
+    metric: varies
+    limit: see operator deployment configuration
+    notes: Spring Boot Admin enforces no built-in throughput limits; whatever the surrounding gateway/proxy enforces is the effective limit.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Self-Hosted Throttling
+    description: Operators are responsible for configuring rate limits via their reverse proxy, API gateway, or Spring Cloud Gateway / Resilience4j filters. No Retry-After or X-RateLimit-* headers are emitted by the Admin Server itself.
 maintainers:
   - name: codecentric AG
     url: https://www.codecentric.de/
