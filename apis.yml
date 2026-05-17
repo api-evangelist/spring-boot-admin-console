@@ -8,7 +8,7 @@ description: >-
   PagerDuty, OpsGenie, Hipchat, Teams, Telegram).
 url: https://github.com/codecentric/spring-boot-admin
 image: https://raw.githubusercontent.com/codecentric/spring-boot-admin/master/spring-boot-admin-docs/src/site/resources/images/spring-boot-admin-logo.png
-type: opensource
+kind: opensource
 tags:
   - Actuator
   - Administration
@@ -34,7 +34,7 @@ apis:
     properties:
       - type: Documentation
         url: https://codecentric.github.io/spring-boot-admin/current/
-      - type: GitHub Repository
+      - type: GitHubRepository
         url: https://github.com/codecentric/spring-boot-admin
       - type: OpenAPI
         url: openapi/spring-boot-admin-console-openapi.yml
@@ -42,7 +42,7 @@ apis:
         url: rules/spring-boot-admin-console-rules.yml
       - type: Maven Central
         url: https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-server
-      - type: Release Notes
+      - type: ReleaseNotes
         url: https://github.com/codecentric/spring-boot-admin/releases
   - name: Applications API
     description: >-
@@ -103,7 +103,7 @@ maintainers:
     url: https://www.codecentric.de/
     email: info@codecentric.de
 common:
-  - type: GitHub Repository
+  - type: GitHubRepository
     url: https://github.com/codecentric/spring-boot-admin
   - type: Issue Tracker
     url: https://github.com/codecentric/spring-boot-admin/issues
