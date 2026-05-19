@@ -1,0 +1,447 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Spring Boot Admin Server API — Instances
+  description: 'Spring Boot Admin Server API — Instances. 10 operations. Lead operation: List All Instances. Self-contained
+    Naftiko capability covering one Spring Boot Admin Console business surface.'
+  tags:
+  - Spring Boot Admin Console
+  - Instances
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPRING_BOOT_ADMIN_CONSOLE_API_KEY: SPRING_BOOT_ADMIN_CONSOLE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: spring-boot-admin-console-instances
+    baseUri: http://localhost:8080
+    description: Spring Boot Admin Server API — Instances business capability. Self-contained, no shared references.
+    resources:
+    - name: instances
+      path: /instances
+      operations:
+      - name: listinstances
+        method: GET
+        description: List All Instances
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application
+          in: query
+          type: string
+          description: Filter instances by application name
+    - name: instances-id
+      path: /instances/{id}
+      operations:
+      - name: getinstance
+        method: GET
+        description: Get Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Instance ID (assigned by Admin server on registration)
+          required: true
+      - name: deregisterinstance
+        method: DELETE
+        description: Deregister Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Instance ID to deregister
+          required: true
+    - name: instances-id-actuator
+      path: /instances/{id}/actuator
+      operations:
+      - name: getinstanceactuatorendpoints
+        method: GET
+        description: Get Instance Actuator Endpoints
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Instance ID
+          required: true
+    - name: instances-id-actuator-env
+      path: /instances/{id}/actuator/env
+      operations:
+      - name: getinstanceenvironment
+        method: GET
+        description: Get Instance Environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Instance ID
+          required: true
+    - name: instances-id-actuator-health
+      path: /instances/{id}/actuator/health
+      operations:
+      - name: getinstancehealth
+        method: GET
+        description: Get Instance Health
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Instance ID
+          required: true
+    - name: instances-id-actuator-info
+      path: /instances/{id}/actuator/info
+      operations:
+      - name: getinstanceinfo
+        method: GET
+        description: Get Instance Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Instance ID
+          required: true
+    - name: instances-id-actuator-loggers
+      path: /instances/{id}/actuator/loggers
+      operations:
+      - name: getinstanceloggers
+        method: GET
+        description: Get Instance Loggers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Instance ID
+          required: true
+      - name: setinstanceloggerlevel
+        method: POST
+        description: Set Instance Logger Level
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Instance ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: instances-id-actuator-metrics
+      path: /instances/{id}/actuator/metrics
+      operations:
+      - name: getinstancemetrics
+        method: GET
+        description: Get Instance Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Instance ID
+          required: true
+  exposes:
+  - type: rest
+    namespace: spring-boot-admin-console-instances-rest
+    port: 8080
+    description: REST adapter for Spring Boot Admin Server API — Instances. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/instances
+      name: instances
+      description: REST surface for instances.
+      operations:
+      - method: GET
+        name: listinstances
+        description: List All Instances
+        call: spring-boot-admin-console-instances.listinstances
+        with:
+          application: rest.application
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{id}
+      name: instances-id
+      description: REST surface for instances-id.
+      operations:
+      - method: GET
+        name: getinstance
+        description: Get Instance
+        call: spring-boot-admin-console-instances.getinstance
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deregisterinstance
+        description: Deregister Instance
+        call: spring-boot-admin-console-instances.deregisterinstance
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{id}/actuator
+      name: instances-id-actuator
+      description: REST surface for instances-id-actuator.
+      operations:
+      - method: GET
+        name: getinstanceactuatorendpoints
+        description: Get Instance Actuator Endpoints
+        call: spring-boot-admin-console-instances.getinstanceactuatorendpoints
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{id}/actuator/env
+      name: instances-id-actuator-env
+      description: REST surface for instances-id-actuator-env.
+      operations:
+      - method: GET
+        name: getinstanceenvironment
+        description: Get Instance Environment
+        call: spring-boot-admin-console-instances.getinstanceenvironment
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{id}/actuator/health
+      name: instances-id-actuator-health
+      description: REST surface for instances-id-actuator-health.
+      operations:
+      - method: GET
+        name: getinstancehealth
+        description: Get Instance Health
+        call: spring-boot-admin-console-instances.getinstancehealth
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{id}/actuator/info
+      name: instances-id-actuator-info
+      description: REST surface for instances-id-actuator-info.
+      operations:
+      - method: GET
+        name: getinstanceinfo
+        description: Get Instance Info
+        call: spring-boot-admin-console-instances.getinstanceinfo
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{id}/actuator/loggers
+      name: instances-id-actuator-loggers
+      description: REST surface for instances-id-actuator-loggers.
+      operations:
+      - method: GET
+        name: getinstanceloggers
+        description: Get Instance Loggers
+        call: spring-boot-admin-console-instances.getinstanceloggers
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: setinstanceloggerlevel
+        description: Set Instance Logger Level
+        call: spring-boot-admin-console-instances.setinstanceloggerlevel
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{id}/actuator/metrics
+      name: instances-id-actuator-metrics
+      description: REST surface for instances-id-actuator-metrics.
+      operations:
+      - method: GET
+        name: getinstancemetrics
+        description: Get Instance Metrics
+        call: spring-boot-admin-console-instances.getinstancemetrics
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: spring-boot-admin-console-instances-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Spring Boot Admin Server API — Instances. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-all-instances
+      description: List All Instances
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spring-boot-admin-console-instances.listinstances
+      with:
+        application: tools.application
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-instance
+      description: Get Instance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spring-boot-admin-console-instances.getinstance
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deregister-instance
+      description: Deregister Instance
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: spring-boot-admin-console-instances.deregisterinstance
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-instance-actuator-endpoints
+      description: Get Instance Actuator Endpoints
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spring-boot-admin-console-instances.getinstanceactuatorendpoints
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-instance-environment
+      description: Get Instance Environment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spring-boot-admin-console-instances.getinstanceenvironment
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-instance-health
+      description: Get Instance Health
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spring-boot-admin-console-instances.getinstancehealth
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-instance-info
+      description: Get Instance Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spring-boot-admin-console-instances.getinstanceinfo
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-instance-loggers
+      description: Get Instance Loggers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spring-boot-admin-console-instances.getinstanceloggers
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: set-instance-logger-level
+      description: Set Instance Logger Level
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: spring-boot-admin-console-instances.setinstanceloggerlevel
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-instance-metrics
+      description: Get Instance Metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spring-boot-admin-console-instances.getinstancemetrics
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

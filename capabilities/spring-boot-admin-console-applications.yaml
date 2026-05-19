@@ -1,0 +1,179 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Spring Boot Admin Server API — Applications
+  description: 'Spring Boot Admin Server API — Applications. 4 operations. Lead operation: List Registered Applications. Self-contained
+    Naftiko capability covering one Spring Boot Admin Console business surface.'
+  tags:
+  - Spring Boot Admin Console
+  - Applications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPRING_BOOT_ADMIN_CONSOLE_API_KEY: SPRING_BOOT_ADMIN_CONSOLE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: spring-boot-admin-console-applications
+    baseUri: http://localhost:8080
+    description: Spring Boot Admin Server API — Applications business capability. Self-contained, no shared references.
+    resources:
+    - name: applications
+      path: /applications
+      operations:
+      - name: listapplications
+        method: GET
+        description: List Registered Applications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: registerapplication
+        method: POST
+        description: Register Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-name
+      path: /applications/{name}
+      operations:
+      - name: getapplication
+        method: GET
+        description: Get Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Application name
+          required: true
+      - name: deregisterapplication
+        method: DELETE
+        description: Deregister Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Application name to deregister
+          required: true
+  exposes:
+  - type: rest
+    namespace: spring-boot-admin-console-applications-rest
+    port: 8080
+    description: REST adapter for Spring Boot Admin Server API — Applications. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/applications
+      name: applications
+      description: REST surface for applications.
+      operations:
+      - method: GET
+        name: listapplications
+        description: List Registered Applications
+        call: spring-boot-admin-console-applications.listapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: registerapplication
+        description: Register Application
+        call: spring-boot-admin-console-applications.registerapplication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{name}
+      name: applications-name
+      description: REST surface for applications-name.
+      operations:
+      - method: GET
+        name: getapplication
+        description: Get Application
+        call: spring-boot-admin-console-applications.getapplication
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deregisterapplication
+        description: Deregister Application
+        call: spring-boot-admin-console-applications.deregisterapplication
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: spring-boot-admin-console-applications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Spring Boot Admin Server API — Applications. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-registered-applications
+      description: List Registered Applications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spring-boot-admin-console-applications.listapplications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: register-application
+      description: Register Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: spring-boot-admin-console-applications.registerapplication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-application
+      description: Get Application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spring-boot-admin-console-applications.getapplication
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deregister-application
+      description: Deregister Application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: spring-boot-admin-console-applications.deregisterapplication
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
