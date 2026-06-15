@@ -1,0 +1,1866 @@
+{
+  "item": [
+    {
+      "id": "0f53b13d-aad3-4641-83a2-29123df634a2",
+      "name": "Applications",
+      "description": {
+        "content": "Application registration and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3f5a308b-8f07-4e48-849a-4f5bed9f7e60",
+          "name": "List Registered Applications",
+          "request": {
+            "name": "List Registered Applications",
+            "description": {
+              "content": "Returns all applications registered with the Spring Boot Admin server, grouped by application name. Each application may have multiple instances.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d00a591-3bc6-42a5-bd43-d6686d2c4958",
+              "name": "List of registered applications",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"my-spring-app\",\n    \"instances\": [\n      {\n        \"id\": \"abc123def456\",\n        \"version\": 4810,\n        \"registration\": {\n          \"name\": \"my-spring-app\",\n          \"managementUrl\": \"http://localhost:8081/actuator\",\n          \"healthUrl\": \"http://localhost:8081/actuator/health\",\n          \"serviceUrl\": \"http://localhost:8081\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        },\n        \"registered\": false,\n        \"statusInfo\": {\n          \"status\": \"OUT_OF_SERVICE\",\n          \"details\": {\n            \"key_0\": 1250.4975937639117,\n            \"key_1\": 2526\n          }\n        },\n        \"statusTimestamp\": \"1959-11-14T00:44:46.058Z\",\n        \"info\": {\n          \"key_0\": true,\n          \"key_1\": false\n        },\n        \"endpoints\": [\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"buildVersion\": \"string\",\n        \"tags\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        }\n      },\n      {\n        \"id\": \"abc123def456\",\n        \"version\": 6917,\n        \"registration\": {\n          \"name\": \"my-spring-app\",\n          \"managementUrl\": \"http://localhost:8081/actuator\",\n          \"healthUrl\": \"http://localhost:8081/actuator/health\",\n          \"serviceUrl\": \"http://localhost:8081\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"registered\": true,\n        \"statusInfo\": {\n          \"status\": \"UP\",\n          \"details\": {\n            \"key_0\": 9257.501119920431,\n            \"key_1\": 6943\n          }\n        },\n        \"statusTimestamp\": \"2016-08-10T19:56:28.097Z\",\n        \"info\": {\n          \"key_0\": \"string\",\n          \"key_1\": 6433.134702623354,\n          \"key_2\": 7510\n        },\n        \"endpoints\": [\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"buildVersion\": \"string\",\n        \"tags\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        }\n      }\n    ],\n    \"status\": \"OUT_OF_SERVICE\"\n  },\n  {\n    \"name\": \"my-spring-app\",\n    \"instances\": [\n      {\n        \"id\": \"abc123def456\",\n        \"version\": 1864,\n        \"registration\": {\n          \"name\": \"my-spring-app\",\n          \"managementUrl\": \"http://localhost:8081/actuator\",\n          \"healthUrl\": \"http://localhost:8081/actuator/health\",\n          \"serviceUrl\": \"http://localhost:8081\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"registered\": false,\n        \"statusInfo\": {\n          \"status\": \"RESTRICTED\",\n          \"details\": {\n            \"key_0\": true\n          }\n        },\n        \"statusTimestamp\": \"1964-07-25T01:36:22.826Z\",\n        \"info\": {\n          \"key_0\": 6642.484330407891\n        },\n        \"endpoints\": [\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"buildVersion\": \"string\",\n        \"tags\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\",\n          \"key_4\": \"string\"\n        }\n      },\n      {\n        \"id\": \"abc123def456\",\n        \"version\": 4735,\n        \"registration\": {\n          \"name\": \"my-spring-app\",\n          \"managementUrl\": \"http://localhost:8081/actuator\",\n          \"healthUrl\": \"http://localhost:8081/actuator/health\",\n          \"serviceUrl\": \"http://localhost:8081\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"registered\": false,\n        \"statusInfo\": {\n          \"status\": \"RESTRICTED\",\n          \"details\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"statusTimestamp\": \"2020-10-07T10:55:04.862Z\",\n        \"info\": {\n          \"key_0\": false,\n          \"key_1\": 4527.42040142379\n        },\n        \"endpoints\": [\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"buildVersion\": \"string\",\n        \"tags\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      }\n    ],\n    \"status\": \"UP\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50f85bda-1901-4322-aed7-a44ae35c5d48",
+          "name": "Register Application",
+          "request": {
+            "name": "Register Application",
+            "description": {
+              "content": "Registers a new Spring Boot application with the Admin server. Typically called automatically by the spring-boot-admin-client dependency on startup.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"managementUrl\": \"<string>\",\n  \"healthUrl\": \"<string>\",\n  \"serviceUrl\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "803b6e02-8ada-4f1f-ba23-d0ab6775bf19",
+              "name": "Application registered successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"my-spring-app\",\n  \"managementUrl\": \"http://localhost:8081/actuator\",\n  \"healthUrl\": \"http://localhost:8081/actuator/health\",\n  \"serviceUrl\": \"http://localhost:8081\",\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123def456\",\n  \"version\": 3431,\n  \"registration\": {\n    \"name\": \"my-spring-app\",\n    \"managementUrl\": \"http://localhost:8081/actuator\",\n    \"healthUrl\": \"http://localhost:8081/actuator/health\",\n    \"serviceUrl\": \"http://localhost:8081\",\n    \"metadata\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"registered\": true,\n  \"statusInfo\": {\n    \"status\": \"DOWN\",\n    \"details\": {\n      \"key_0\": 4130\n    }\n  },\n  \"statusTimestamp\": \"2022-07-01T06:51:48.563Z\",\n  \"info\": {\n    \"key_0\": 2308,\n    \"key_1\": 3490.264457247845,\n    \"key_2\": 3972,\n    \"key_3\": 1893,\n    \"key_4\": 4223.493359654835\n  },\n  \"endpoints\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"buildVersion\": \"string\",\n  \"tags\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f472432e-71df-4279-84fe-e197dda10208",
+              "name": "Invalid registration payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"my-spring-app\",\n  \"managementUrl\": \"http://localhost:8081/actuator\",\n  \"healthUrl\": \"http://localhost:8081/actuator/health\",\n  \"serviceUrl\": \"http://localhost:8081\",\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8946769-3dcd-4a49-8e68-d6443208ce93",
+          "name": "Get Application",
+          "request": {
+            "name": "Get Application",
+            "description": {
+              "content": "Returns all instances for a specific application grouped by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Application name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c4cb44a-7617-42ed-978c-e39f43b6182f",
+              "name": "Application with all instances",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Application name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"my-spring-app\",\n  \"instances\": [\n    {\n      \"id\": \"abc123def456\",\n      \"version\": 1917,\n      \"registration\": {\n        \"name\": \"my-spring-app\",\n        \"managementUrl\": \"http://localhost:8081/actuator\",\n        \"healthUrl\": \"http://localhost:8081/actuator/health\",\n        \"serviceUrl\": \"http://localhost:8081\",\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"registered\": true,\n      \"statusInfo\": {\n        \"status\": \"UNKNOWN\",\n        \"details\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"statusTimestamp\": \"1963-02-07T06:48:11.229Z\",\n      \"info\": {\n        \"key_0\": 4789.845038094657\n      },\n      \"endpoints\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"buildVersion\": \"string\",\n      \"tags\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"id\": \"abc123def456\",\n      \"version\": 5660,\n      \"registration\": {\n        \"name\": \"my-spring-app\",\n        \"managementUrl\": \"http://localhost:8081/actuator\",\n        \"healthUrl\": \"http://localhost:8081/actuator/health\",\n        \"serviceUrl\": \"http://localhost:8081\",\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        }\n      },\n      \"registered\": true,\n      \"statusInfo\": {\n        \"status\": \"DOWN\",\n        \"details\": {\n          \"key_0\": false,\n          \"key_1\": false,\n          \"key_2\": 6589\n        }\n      },\n      \"statusTimestamp\": \"1949-09-22T18:17:35.415Z\",\n      \"info\": {\n        \"key_0\": false\n      },\n      \"endpoints\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"buildVersion\": \"string\",\n      \"tags\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ],\n  \"status\": \"RESTRICTED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2907b6fd-648c-42dd-98c5-a86829458592",
+              "name": "Application not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Application name"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43d9581a-db96-425d-8380-07c88191b1a7",
+          "name": "Deregister Application",
+          "request": {
+            "name": "Deregister Application",
+            "description": {
+              "content": "Deregisters all instances of the specified application from the Admin server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Application name to deregister"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4a0f4fb-d8d4-49a0-b4c5-1de4b8fd9620",
+              "name": "Application deregistered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Application name to deregister"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7c79d0f7-1e2f-4522-a9ab-50c3a2e8e4da",
+              "name": "Application not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Application name to deregister"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7044b69e-cb2c-42f6-a37f-91b09bd68f4b",
+      "name": "Instances",
+      "description": {
+        "content": "Application instance monitoring and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e2965836-d3dc-42a0-8ddc-1a677f380e24",
+          "name": "List All Instances",
+          "request": {
+            "name": "List All Instances",
+            "description": {
+              "content": "Returns all registered application instances. Each instance represents a running Spring Boot application registered with the Admin server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "application",
+                  "value": "<string>",
+                  "description": "Filter instances by application name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07d167ec-be9e-4980-8d66-83294b3b8bac",
+              "name": "List of application instances",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "application",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"abc123def456\",\n    \"version\": 9992,\n    \"registration\": {\n      \"name\": \"my-spring-app\",\n      \"managementUrl\": \"http://localhost:8081/actuator\",\n      \"healthUrl\": \"http://localhost:8081/actuator/health\",\n      \"serviceUrl\": \"http://localhost:8081\",\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    },\n    \"registered\": true,\n    \"statusInfo\": {\n      \"status\": \"OUT_OF_SERVICE\",\n      \"details\": {\n        \"key_0\": true,\n        \"key_1\": 3891\n      }\n    },\n    \"statusTimestamp\": \"1964-09-01T03:42:40.716Z\",\n    \"info\": {\n      \"key_0\": 1361,\n      \"key_1\": \"string\",\n      \"key_2\": 74.7574631890513,\n      \"key_3\": 2198.881591991887\n    },\n    \"endpoints\": [\n      {\n        \"id\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"url\": \"string\"\n      }\n    ],\n    \"buildVersion\": \"string\",\n    \"tags\": {\n      \"key_0\": \"string\"\n    }\n  },\n  {\n    \"id\": \"abc123def456\",\n    \"version\": 8071,\n    \"registration\": {\n      \"name\": \"my-spring-app\",\n      \"managementUrl\": \"http://localhost:8081/actuator\",\n      \"healthUrl\": \"http://localhost:8081/actuator/health\",\n      \"serviceUrl\": \"http://localhost:8081\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      }\n    },\n    \"registered\": false,\n    \"statusInfo\": {\n      \"status\": \"UP\",\n      \"details\": {\n        \"key_0\": \"string\",\n        \"key_1\": false\n      }\n    },\n    \"statusTimestamp\": \"1995-01-31T00:14:57.951Z\",\n    \"info\": {\n      \"key_0\": 8821,\n      \"key_1\": 7595\n    },\n    \"endpoints\": [\n      {\n        \"id\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"url\": \"string\"\n      }\n    ],\n    \"buildVersion\": \"string\",\n    \"tags\": {\n      \"key_0\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c287e0b-87ae-4d5b-ba5d-1f32878a6caf",
+          "name": "Get Instance",
+          "request": {
+            "name": "Get Instance",
+            "description": {
+              "content": "Returns details for a specific application instance by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Instance ID (assigned by Admin server on registration)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92e54722-a863-46ff-8bf8-dfae8e85ae1e",
+              "name": "Instance details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID (assigned by Admin server on registration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123def456\",\n  \"version\": 3431,\n  \"registration\": {\n    \"name\": \"my-spring-app\",\n    \"managementUrl\": \"http://localhost:8081/actuator\",\n    \"healthUrl\": \"http://localhost:8081/actuator/health\",\n    \"serviceUrl\": \"http://localhost:8081\",\n    \"metadata\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"registered\": true,\n  \"statusInfo\": {\n    \"status\": \"DOWN\",\n    \"details\": {\n      \"key_0\": 4130\n    }\n  },\n  \"statusTimestamp\": \"2022-07-01T06:51:48.563Z\",\n  \"info\": {\n    \"key_0\": 2308,\n    \"key_1\": 3490.264457247845,\n    \"key_2\": 3972,\n    \"key_3\": 1893,\n    \"key_4\": 4223.493359654835\n  },\n  \"endpoints\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"buildVersion\": \"string\",\n  \"tags\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "971a6af8-30be-49bb-8c77-b37a01b5e641",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID (assigned by Admin server on registration)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8baf2dfa-d5fe-4f23-b2c1-b2801254f266",
+          "name": "Deregister Instance",
+          "request": {
+            "name": "Deregister Instance",
+            "description": {
+              "content": "Deregisters a specific application instance from the Admin server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Instance ID to deregister"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b21fd51-d880-4816-b917-2fe8a81c9b00",
+              "name": "Instance deregistered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID to deregister"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6da3805d-4b44-4b87-92fa-933f37c0a49a",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID to deregister"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9584ef8b-5fc7-4905-ad15-d042021ab3ec",
+          "name": "Get Instance Actuator Endpoints",
+          "request": {
+            "name": "Get Instance Actuator Endpoints",
+            "description": {
+              "content": "Returns the list of Actuator endpoints available for a specific instance, as discovered from the instance's /actuator endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":id",
+                "actuator"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Instance ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "664e3c76-2cc1-4033-b7ff-2ac3a5705577",
+              "name": "Available Actuator endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"string\",\n      \"templated\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ff65a29-fac9-4640-b144-4cefe82fb6e8",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a34830a6-5657-4ef9-80be-be0f01c8f206",
+          "name": "Get Instance Health",
+          "request": {
+            "name": "Get Instance Health",
+            "description": {
+              "content": "Proxies the health Actuator endpoint for the specified instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":id",
+                "actuator",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Instance ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd7c9ac7-fda3-4029-9c98-8a8a1eb6b0aa",
+              "name": "Instance health status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OUT_OF_SERVICE\",\n  \"components\": {\n    \"key_0\": {\n      \"status\": \"string\",\n      \"details\": {\n        \"key_0\": true,\n        \"key_1\": 1259,\n        \"key_2\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecffd7a6-dfa1-4321-aa85-fdd7a5d12d22",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "95480345-4aa0-46cd-aa9e-c9568bc3a159",
+              "name": "Instance is unhealthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24399084-5227-4c0e-b66d-9fa18790ac12",
+          "name": "Get Instance Info",
+          "request": {
+            "name": "Get Instance Info",
+            "description": {
+              "content": "Proxies the info Actuator endpoint for the specified instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":id",
+                "actuator",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Instance ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c9ff40f-6182-4091-861c-002e32f95c7b",
+              "name": "Instance application info",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 4415\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b01963be-5902-4b85-a54d-afd5a199f147",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1831acd-7a82-4546-b48a-02ca62d207e3",
+          "name": "Get Instance Metrics",
+          "request": {
+            "name": "Get Instance Metrics",
+            "description": {
+              "content": "Proxies the metrics Actuator endpoint for the specified instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":id",
+                "actuator",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Instance ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c7aec4d-f026-4a2a-ab22-b627646b7fb4",
+              "name": "Available metrics for this instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"names\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d7e76e0-5dbb-4e2e-b2c7-053f05f1227a",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbd863ae-96ee-498e-bfaa-3b7bf9288813",
+          "name": "Get Instance Environment",
+          "request": {
+            "name": "Get Instance Environment",
+            "description": {
+              "content": "Proxies the env Actuator endpoint for the specified instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":id",
+                "actuator",
+                "env"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Instance ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c53a544-3619-417f-bfec-ea77ad9cb7ab",
+              "name": "Instance environment properties",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator",
+                    "env"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 4415\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d7f729b-712f-4d50-9f3d-6ea46158d963",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator",
+                    "env"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc00f293-061f-4f0e-bfc4-464465a0c673",
+          "name": "Get Instance Loggers",
+          "request": {
+            "name": "Get Instance Loggers",
+            "description": {
+              "content": "Proxies the loggers Actuator endpoint for the specified instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":id",
+                "actuator",
+                "loggers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Instance ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "645dae0b-caef-4e94-98f7-36d092b5ab0c",
+              "name": "Logger configuration for this instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator",
+                    "loggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 4415\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7aa7d5d3-fa73-4fcc-ad31-0ada36f8be12",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator",
+                    "loggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38c67c03-d12c-40dd-8e8f-68abf44eae3f",
+          "name": "Set Instance Logger Level",
+          "request": {
+            "name": "Set Instance Logger Level",
+            "description": {
+              "content": "Proxies a POST to the loggers Actuator endpoint to change a logger level at runtime on the specified instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":id",
+                "actuator",
+                "loggers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Instance ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"configuredLevel\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3fc96644-fac6-4948-a5ea-313ca4af0829",
+              "name": "Logger level updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator",
+                    "loggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuredLevel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19c5a7ec-622e-4863-bf75-c4e47209fd81",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":id",
+                    "actuator",
+                    "loggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Instance ID"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuredLevel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "992d90e4-b245-4c03-8d0c-0de847bed827",
+      "name": "Events",
+      "description": {
+        "content": "Instance lifecycle event stream",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5aa58af2-dc05-4d3b-8ec8-f2a2bf2b8c18",
+          "name": "Stream Instance Events",
+          "request": {
+            "name": "Stream Instance Events",
+            "description": {
+              "content": "Server-Sent Events (SSE) stream of all instance lifecycle events. Events include REGISTERED, DEREGISTERED, STATUS_CHANGED, INFO_CHANGED, and ENDPOINTS_DETECTED.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/event-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f970894-855a-4244-b665-72c3e9516f1c",
+              "name": "SSE event stream of instance lifecycle events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/event-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/event-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "eb76e8eb-6d7e-476d-862a-d08f050ea3d2",
+    "name": "Spring Boot Admin Server API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Spring Boot Admin server. Manages application registration, instance monitoring, Actuator endpoint proxying, and lifecycle event streaming. Spring Boot Admin is a community project by codecentric AG that provides a web UI for monitoring and managing Spring Boot applications via their Actuator endpoints.\n\nContact Support:\n Name: codecentric AG",
+      "type": "text/plain"
+    }
+  }
+}

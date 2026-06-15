@@ -1,0 +1,303 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spring Boot Admin Server API",
+    "version": "3.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Registered Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/applications"
+          },
+          "docs": "Returns all applications registered with the Spring Boot Admin server, grouped by application name. Each application may have multiple instances."
+        },
+        {
+          "info": {
+            "name": "Register Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new Spring Boot application with the Admin server. Typically called automatically by the spring-boot-admin-client dependency on startup."
+        },
+        {
+          "info": {
+            "name": "Get Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/applications/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              }
+            ]
+          },
+          "docs": "Returns all instances for a specific application grouped by name."
+        },
+        {
+          "info": {
+            "name": "Deregister Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/applications/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Application name to deregister"
+              }
+            ]
+          },
+          "docs": "Deregisters all instances of the specified application from the Admin server."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances",
+            "params": [
+              {
+                "name": "application",
+                "value": "",
+                "type": "query",
+                "description": "Filter instances by application name"
+              }
+            ]
+          },
+          "docs": "Returns all registered application instances. Each instance represents a running Spring Boot application registered with the Admin server."
+        },
+        {
+          "info": {
+            "name": "Get Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID (assigned by Admin server on registration)"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific application instance by its ID."
+        },
+        {
+          "info": {
+            "name": "Deregister Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/instances/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID to deregister"
+              }
+            ]
+          },
+          "docs": "Deregisters a specific application instance from the Admin server."
+        },
+        {
+          "info": {
+            "name": "Get Instance Actuator Endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id/actuator",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ]
+          },
+          "docs": "Returns the list of Actuator endpoints available for a specific instance, as discovered from the instance's /actuator endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Instance Health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id/actuator/health",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ]
+          },
+          "docs": "Proxies the health Actuator endpoint for the specified instance."
+        },
+        {
+          "info": {
+            "name": "Get Instance Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id/actuator/info",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ]
+          },
+          "docs": "Proxies the info Actuator endpoint for the specified instance."
+        },
+        {
+          "info": {
+            "name": "Get Instance Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id/actuator/metrics",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ]
+          },
+          "docs": "Proxies the metrics Actuator endpoint for the specified instance."
+        },
+        {
+          "info": {
+            "name": "Get Instance Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id/actuator/env",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ]
+          },
+          "docs": "Proxies the env Actuator endpoint for the specified instance."
+        },
+        {
+          "info": {
+            "name": "Get Instance Loggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id/actuator/loggers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ]
+          },
+          "docs": "Proxies the loggers Actuator endpoint for the specified instance."
+        },
+        {
+          "info": {
+            "name": "Set Instance Logger Level",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/instances/:id/actuator/loggers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Proxies a POST to the loggers Actuator endpoint to change a logger level at runtime on the specified instance."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Stream Instance Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/events"
+          },
+          "docs": "Server-Sent Events (SSE) stream of all instance lifecycle events. Events include REGISTERED, DEREGISTERED, STATUS_CHANGED, INFO_CHANGED, and ENDPOINTS_DETECTED."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
