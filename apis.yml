@@ -36,7 +36,7 @@ apis:
         url: https://github.com/codecentric/spring-boot-admin
       - type: OpenAPI
         url: openapi/spring-boot-admin-console-openapi.yml
-      - type: Spectral Rules
+      - type: SpectralRules
         url: rules/spring-boot-admin-console-rules.yml
       - type: Maven Central
         url: https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-server
