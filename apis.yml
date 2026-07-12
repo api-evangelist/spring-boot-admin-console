@@ -98,6 +98,8 @@ maintainers:
     url: https://www.codecentric.de/
     email: info@codecentric.de
 common:
+  - url: https://blog.codecentric.de/feed/
+    type: Blog
   - type: GitHubRepository
     url: https://github.com/codecentric/spring-boot-admin
   - type: Issue Tracker
