@@ -1,0 +1,14 @@
+{
+  "repo": "spring-boot-admin-console",
+  "feeds": [
+    {
+      "source": "https://blog.codecentric.de/feed/",
+      "feed_url": "https://blog.codecentric.de/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 8
+}
