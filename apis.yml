@@ -98,6 +98,8 @@ maintainers:
     url: https://www.codecentric.de/
     email: info@codecentric.de
 common:
+  - type: AgenticAccess
+    url: agentic-access/spring-boot-admin-console-agentic-access.yml
   - url: https://blog.codecentric.de/feed/
     type: Blog
   - type: GitHubRepository
