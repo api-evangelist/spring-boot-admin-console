@@ -1,0 +1,82 @@
+openapi: 3.1.0
+info:
+  title: Spring Boot Admin Server Applications Events API
+  description: REST API for the Spring Boot Admin server. Manages application registration, instance monitoring, Actuator endpoint proxying, and lifecycle event streaming. Spring Boot Admin is a community project by codecentric AG that provides a web UI for monitoring and managing Spring Boot applications via their Actuator endpoints.
+  version: 3.3.0
+  contact:
+    name: codecentric AG
+    url: https://github.com/codecentric/spring-boot-admin
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080
+  description: Local Spring Boot Admin server
+tags:
+- name: Events
+  description: Instance lifecycle event stream
+paths:
+  /instances/events:
+    get:
+      operationId: streamInstanceEvents
+      summary: Stream Instance Events
+      description: Server-Sent Events (SSE) stream of all instance lifecycle events. Events include REGISTERED, DEREGISTERED, STATUS_CHANGED, INFO_CHANGED, and ENDPOINTS_DETECTED.
+      tags:
+      - Events
+      responses:
+        '200':
+          description: SSE event stream of instance lifecycle events
+          content:
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/InstanceEvent'
+components:
+  schemas:
+    InstanceEvent:
+      type: object
+      description: A lifecycle event for an application instance (delivered via SSE)
+      properties:
+        instance:
+          type: string
+          description: Instance ID this event is about
+          example: abc123def456
+        version:
+          type: integer
+          description: Event version number (monotonically increasing)
+        timestamp:
+          type: string
+          format: date-time
+          description: When this event occurred
+        type:
+          type: string
+          description: Event type
+          enum:
+          - REGISTERED
+          - DEREGISTERED
+          - STATUS_CHANGED
+          - INFO_CHANGED
+          - ENDPOINTS_DETECTED
+        statusInfo:
+          $ref: '#/components/schemas/StatusInfo'
+        info:
+          type: object
+          description: Updated info payload (for INFO_CHANGED events)
+          additionalProperties: true
+    StatusInfo:
+      type: object
+      description: Status information for an application instance
+      properties:
+        status:
+          type: string
+          description: Current instance status
+          enum:
+          - UP
+          - DOWN
+          - OUT_OF_SERVICE
+          - UNKNOWN
+          - RESTRICTED
+          - OFFLINE
+        details:
+          type: object
+          description: Additional status details from the health endpoint
+          additionalProperties: true

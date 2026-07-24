@@ -1,0 +1,216 @@
+openapi: 3.1.0
+info:
+  title: Spring Boot Admin Server Applications API
+  description: REST API for the Spring Boot Admin server. Manages application registration, instance monitoring, Actuator endpoint proxying, and lifecycle event streaming. Spring Boot Admin is a community project by codecentric AG that provides a web UI for monitoring and managing Spring Boot applications via their Actuator endpoints.
+  version: 3.3.0
+  contact:
+    name: codecentric AG
+    url: https://github.com/codecentric/spring-boot-admin
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080
+  description: Local Spring Boot Admin server
+tags:
+- name: Applications
+  description: Application registration and management
+paths:
+  /applications:
+    get:
+      operationId: listApplications
+      summary: List Registered Applications
+      description: Returns all applications registered with the Spring Boot Admin server, grouped by application name. Each application may have multiple instances.
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: List of registered applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+    post:
+      operationId: registerApplication
+      summary: Register Application
+      description: Registers a new Spring Boot application with the Admin server. Typically called automatically by the spring-boot-admin-client dependency on startup.
+      tags:
+      - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationRegistration'
+      responses:
+        '201':
+          description: Application registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instance'
+        '400':
+          description: Invalid registration payload
+  /applications/{name}:
+    get:
+      operationId: getApplication
+      summary: Get Application
+      description: Returns all instances for a specific application grouped by name.
+      tags:
+      - Applications
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Application name
+        schema:
+          type: string
+          example: my-spring-app
+      responses:
+        '200':
+          description: Application with all instances
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '404':
+          description: Application not found
+    delete:
+      operationId: deregisterApplication
+      summary: Deregister Application
+      description: Deregisters all instances of the specified application from the Admin server.
+      tags:
+      - Applications
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Application name to deregister
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Application deregistered
+        '404':
+          description: Application not found
+components:
+  schemas:
+    Instance:
+      type: object
+      description: A single registered Spring Boot application instance
+      properties:
+        id:
+          type: string
+          description: Unique instance identifier assigned by Admin server
+          example: abc123def456
+        version:
+          type: integer
+          description: Optimistic locking version
+        registration:
+          $ref: '#/components/schemas/ApplicationRegistration'
+        registered:
+          type: boolean
+          description: Whether the instance is currently registered
+        statusInfo:
+          $ref: '#/components/schemas/StatusInfo'
+        statusTimestamp:
+          type: string
+          format: date-time
+          description: Timestamp of the last status change
+        info:
+          type: object
+          description: Application info collected from the /info Actuator endpoint
+          additionalProperties: true
+        endpoints:
+          type: array
+          description: Available Actuator endpoints for this instance
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Endpoint ID (health, metrics, loggers, etc.)
+              url:
+                type: string
+                description: Endpoint URL
+        buildVersion:
+          type: string
+          description: Application build version from /info
+          nullable: true
+        tags:
+          type: object
+          description: Custom tags for this instance
+          additionalProperties:
+            type: string
+    ApplicationRegistration:
+      type: object
+      description: Payload to register a Spring Boot application with the Admin server
+      required:
+      - name
+      - managementUrl
+      - healthUrl
+      - serviceUrl
+      properties:
+        name:
+          type: string
+          description: Application name (typically spring.application.name)
+          example: my-spring-app
+        managementUrl:
+          type: string
+          description: URL of the management (Actuator) endpoint base
+          example: http://localhost:8081/actuator
+        healthUrl:
+          type: string
+          description: URL of the health endpoint
+          example: http://localhost:8081/actuator/health
+        serviceUrl:
+          type: string
+          description: URL of the service root
+          example: http://localhost:8081
+        metadata:
+          type: object
+          description: Additional metadata key-value pairs
+          additionalProperties:
+            type: string
+    Application:
+      type: object
+      description: A logical grouping of application instances sharing the same name
+      properties:
+        name:
+          type: string
+          description: Application name
+          example: my-spring-app
+        instances:
+          type: array
+          description: Running instances of this application
+          items:
+            $ref: '#/components/schemas/Instance'
+        status:
+          type: string
+          description: Aggregated status across all instances
+          enum:
+          - UP
+          - DOWN
+          - OUT_OF_SERVICE
+          - UNKNOWN
+          - RESTRICTED
+    StatusInfo:
+      type: object
+      description: Status information for an application instance
+      properties:
+        status:
+          type: string
+          description: Current instance status
+          enum:
+          - UP
+          - DOWN
+          - OUT_OF_SERVICE
+          - UNKNOWN
+          - RESTRICTED
+          - OFFLINE
+        details:
+          type: object
+          description: Additional status details from the health endpoint
+          additionalProperties: true
