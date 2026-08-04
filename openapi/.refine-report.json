@@ -1,0 +1,18 @@
+{
+  "provider": "spring-boot-admin-console",
+  "sources": [
+    "spring-boot-admin-console-applications-api-openapi.yml",
+    "spring-boot-admin-console-events-api-openapi.yml",
+    "spring-boot-admin-console-instances-api-openapi.yml"
+  ],
+  "outputs": [
+    "spring-boot-admin-console-applications-api-openapi.yml",
+    "spring-boot-admin-console-events-api-openapi.yml",
+    "spring-boot-admin-console-instances-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

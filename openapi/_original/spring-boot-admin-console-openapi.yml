@@ -1,0 +1,547 @@
+openapi: 3.1.0
+info:
+  title: Spring Boot Admin Server API
+  description: >-
+    REST API for the Spring Boot Admin server. Manages application registration,
+    instance monitoring, Actuator endpoint proxying, and lifecycle event streaming.
+    Spring Boot Admin is a community project by codecentric AG that provides a
+    web UI for monitoring and managing Spring Boot applications via their Actuator
+    endpoints.
+  version: 3.3.0
+  contact:
+    name: codecentric AG
+    url: https://github.com/codecentric/spring-boot-admin
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: http://localhost:8080
+    description: Local Spring Boot Admin server
+tags:
+  - name: Applications
+    description: Application registration and management
+  - name: Instances
+    description: Application instance monitoring and management
+  - name: Events
+    description: Instance lifecycle event stream
+paths:
+  /applications:
+    get:
+      operationId: listApplications
+      summary: List Registered Applications
+      description: >-
+        Returns all applications registered with the Spring Boot Admin server,
+        grouped by application name. Each application may have multiple instances.
+      tags:
+        - Applications
+      responses:
+        '200':
+          description: List of registered applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+    post:
+      operationId: registerApplication
+      summary: Register Application
+      description: >-
+        Registers a new Spring Boot application with the Admin server. Typically
+        called automatically by the spring-boot-admin-client dependency on startup.
+      tags:
+        - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationRegistration'
+      responses:
+        '201':
+          description: Application registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instance'
+        '400':
+          description: Invalid registration payload
+  /applications/{name}:
+    get:
+      operationId: getApplication
+      summary: Get Application
+      description: Returns all instances for a specific application grouped by name.
+      tags:
+        - Applications
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: Application name
+          schema:
+            type: string
+            example: my-spring-app
+      responses:
+        '200':
+          description: Application with all instances
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '404':
+          description: Application not found
+    delete:
+      operationId: deregisterApplication
+      summary: Deregister Application
+      description: >-
+        Deregisters all instances of the specified application from the Admin server.
+      tags:
+        - Applications
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: Application name to deregister
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Application deregistered
+        '404':
+          description: Application not found
+  /instances:
+    get:
+      operationId: listInstances
+      summary: List All Instances
+      description: >-
+        Returns all registered application instances. Each instance represents
+        a running Spring Boot application registered with the Admin server.
+      tags:
+        - Instances
+      parameters:
+        - name: application
+          in: query
+          required: false
+          description: Filter instances by application name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of application instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Instance'
+  /instances/{id}:
+    get:
+      operationId: getInstance
+      summary: Get Instance
+      description: Returns details for a specific application instance by its ID.
+      tags:
+        - Instances
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Instance ID (assigned by Admin server on registration)
+          schema:
+            type: string
+            example: abc123def456
+      responses:
+        '200':
+          description: Instance details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instance'
+        '404':
+          description: Instance not found
+    delete:
+      operationId: deregisterInstance
+      summary: Deregister Instance
+      description: Deregisters a specific application instance from the Admin server.
+      tags:
+        - Instances
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Instance ID to deregister
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Instance deregistered
+        '404':
+          description: Instance not found
+  /instances/{id}/actuator:
+    get:
+      operationId: getInstanceActuatorEndpoints
+      summary: Get Instance Actuator Endpoints
+      description: >-
+        Returns the list of Actuator endpoints available for a specific instance,
+        as discovered from the instance's /actuator endpoint.
+      tags:
+        - Instances
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Instance ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Available Actuator endpoints
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActuatorEndpoints'
+        '404':
+          description: Instance not found
+  /instances/{id}/actuator/health:
+    get:
+      operationId: getInstanceHealth
+      summary: Get Instance Health
+      description: Proxies the health Actuator endpoint for the specified instance.
+      tags:
+        - Instances
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Instance ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Instance health status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '404':
+          description: Instance not found
+        '503':
+          description: Instance is unhealthy
+  /instances/{id}/actuator/info:
+    get:
+      operationId: getInstanceInfo
+      summary: Get Instance Info
+      description: Proxies the info Actuator endpoint for the specified instance.
+      tags:
+        - Instances
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Instance ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Instance application info
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '404':
+          description: Instance not found
+  /instances/{id}/actuator/metrics:
+    get:
+      operationId: getInstanceMetrics
+      summary: Get Instance Metrics
+      description: Proxies the metrics Actuator endpoint for the specified instance.
+      tags:
+        - Instances
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Instance ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Available metrics for this instance
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  names:
+                    type: array
+                    items:
+                      type: string
+        '404':
+          description: Instance not found
+  /instances/{id}/actuator/env:
+    get:
+      operationId: getInstanceEnvironment
+      summary: Get Instance Environment
+      description: Proxies the env Actuator endpoint for the specified instance.
+      tags:
+        - Instances
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Instance ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Instance environment properties
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '404':
+          description: Instance not found
+  /instances/{id}/actuator/loggers:
+    get:
+      operationId: getInstanceLoggers
+      summary: Get Instance Loggers
+      description: Proxies the loggers Actuator endpoint for the specified instance.
+      tags:
+        - Instances
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Instance ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Logger configuration for this instance
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '404':
+          description: Instance not found
+    post:
+      operationId: setInstanceLoggerLevel
+      summary: Set Instance Logger Level
+      description: >-
+        Proxies a POST to the loggers Actuator endpoint to change a logger level
+        at runtime on the specified instance.
+      tags:
+        - Instances
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Instance ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                configuredLevel:
+                  type: string
+                  description: Log level to set
+                  enum: [TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF]
+      responses:
+        '204':
+          description: Logger level updated
+        '404':
+          description: Instance not found
+  /instances/events:
+    get:
+      operationId: streamInstanceEvents
+      summary: Stream Instance Events
+      description: >-
+        Server-Sent Events (SSE) stream of all instance lifecycle events.
+        Events include REGISTERED, DEREGISTERED, STATUS_CHANGED, INFO_CHANGED,
+        and ENDPOINTS_DETECTED.
+      tags:
+        - Events
+      responses:
+        '200':
+          description: SSE event stream of instance lifecycle events
+          content:
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/InstanceEvent'
+components:
+  schemas:
+    ApplicationRegistration:
+      type: object
+      description: Payload to register a Spring Boot application with the Admin server
+      required:
+        - name
+        - managementUrl
+        - healthUrl
+        - serviceUrl
+      properties:
+        name:
+          type: string
+          description: Application name (typically spring.application.name)
+          example: my-spring-app
+        managementUrl:
+          type: string
+          description: URL of the management (Actuator) endpoint base
+          example: http://localhost:8081/actuator
+        healthUrl:
+          type: string
+          description: URL of the health endpoint
+          example: http://localhost:8081/actuator/health
+        serviceUrl:
+          type: string
+          description: URL of the service root
+          example: http://localhost:8081
+        metadata:
+          type: object
+          description: Additional metadata key-value pairs
+          additionalProperties:
+            type: string
+    Application:
+      type: object
+      description: A logical grouping of application instances sharing the same name
+      properties:
+        name:
+          type: string
+          description: Application name
+          example: my-spring-app
+        instances:
+          type: array
+          description: Running instances of this application
+          items:
+            $ref: '#/components/schemas/Instance'
+        status:
+          type: string
+          description: Aggregated status across all instances
+          enum: [UP, DOWN, OUT_OF_SERVICE, UNKNOWN, RESTRICTED]
+    Instance:
+      type: object
+      description: A single registered Spring Boot application instance
+      properties:
+        id:
+          type: string
+          description: Unique instance identifier assigned by Admin server
+          example: abc123def456
+        version:
+          type: integer
+          description: Optimistic locking version
+        registration:
+          $ref: '#/components/schemas/ApplicationRegistration'
+        registered:
+          type: boolean
+          description: Whether the instance is currently registered
+        statusInfo:
+          $ref: '#/components/schemas/StatusInfo'
+        statusTimestamp:
+          type: string
+          format: date-time
+          description: Timestamp of the last status change
+        info:
+          type: object
+          description: Application info collected from the /info Actuator endpoint
+          additionalProperties: true
+        endpoints:
+          type: array
+          description: Available Actuator endpoints for this instance
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Endpoint ID (health, metrics, loggers, etc.)
+              url:
+                type: string
+                description: Endpoint URL
+        buildVersion:
+          type: string
+          description: Application build version from /info
+          nullable: true
+        tags:
+          type: object
+          description: Custom tags for this instance
+          additionalProperties:
+            type: string
+    StatusInfo:
+      type: object
+      description: Status information for an application instance
+      properties:
+        status:
+          type: string
+          description: Current instance status
+          enum: [UP, DOWN, OUT_OF_SERVICE, UNKNOWN, RESTRICTED, OFFLINE]
+        details:
+          type: object
+          description: Additional status details from the health endpoint
+          additionalProperties: true
+    ActuatorEndpoints:
+      type: object
+      description: Available Actuator endpoints discovered for an instance
+      properties:
+        _links:
+          type: object
+          description: HATEOAS links to available endpoints
+          additionalProperties:
+            type: object
+            properties:
+              href:
+                type: string
+              templated:
+                type: boolean
+    HealthResponse:
+      type: object
+      description: Health status from a proxied instance health endpoint
+      properties:
+        status:
+          type: string
+          description: Health status
+          enum: [UP, DOWN, OUT_OF_SERVICE, UNKNOWN]
+        components:
+          type: object
+          description: Component health details
+          additionalProperties:
+            type: object
+            properties:
+              status:
+                type: string
+              details:
+                type: object
+                additionalProperties: true
+    InstanceEvent:
+      type: object
+      description: A lifecycle event for an application instance (delivered via SSE)
+      properties:
+        instance:
+          type: string
+          description: Instance ID this event is about
+          example: abc123def456
+        version:
+          type: integer
+          description: Event version number (monotonically increasing)
+        timestamp:
+          type: string
+          format: date-time
+          description: When this event occurred
+        type:
+          type: string
+          description: Event type
+          enum:
+            - REGISTERED
+            - DEREGISTERED
+            - STATUS_CHANGED
+            - INFO_CHANGED
+            - ENDPOINTS_DETECTED
+        statusInfo:
+          $ref: '#/components/schemas/StatusInfo'
+        info:
+          type: object
+          description: Updated info payload (for INFO_CHANGED events)
+          additionalProperties: true
