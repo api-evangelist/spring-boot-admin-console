@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spring Boot Admin Server Applications Events API",
+    "version": "3.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Stream Instance Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/events"
+          },
+          "docs": "Server-Sent Events (SSE) stream of all instance lifecycle events. Events include REGISTERED, DEREGISTERED, STATUS_CHANGED, INFO_CHANGED, and ENDPOINTS_DETECTED."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,212 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spring Boot Admin Server Applications Instances API",
+    "version": "3.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances",
+            "params": [
+              {
+                "name": "application",
+                "value": "",
+                "type": "query",
+                "description": "Filter instances by application name"
+              }
+            ]
+          },
+          "docs": "Returns all registered application instances. Each instance represents a running Spring Boot application registered with the Admin server."
+        },
+        {
+          "info": {
+            "name": "Get Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID (assigned by Admin server on registration)"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific application instance by its ID."
+        },
+        {
+          "info": {
+            "name": "Deregister Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/instances/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID to deregister"
+              }
+            ]
+          },
+          "docs": "Deregisters a specific application instance from the Admin server."
+        },
+        {
+          "info": {
+            "name": "Get Instance Actuator Endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id/actuator",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ]
+          },
+          "docs": "Returns the list of Actuator endpoints available for a specific instance, as discovered from the instance's /actuator endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Instance Health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id/actuator/health",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ]
+          },
+          "docs": "Proxies the health Actuator endpoint for the specified instance."
+        },
+        {
+          "info": {
+            "name": "Get Instance Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id/actuator/info",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ]
+          },
+          "docs": "Proxies the info Actuator endpoint for the specified instance."
+        },
+        {
+          "info": {
+            "name": "Get Instance Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id/actuator/metrics",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ]
+          },
+          "docs": "Proxies the metrics Actuator endpoint for the specified instance."
+        },
+        {
+          "info": {
+            "name": "Get Instance Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id/actuator/env",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ]
+          },
+          "docs": "Proxies the env Actuator endpoint for the specified instance."
+        },
+        {
+          "info": {
+            "name": "Get Instance Loggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/instances/:id/actuator/loggers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ]
+          },
+          "docs": "Proxies the loggers Actuator endpoint for the specified instance."
+        },
+        {
+          "info": {
+            "name": "Set Instance Logger Level",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/instances/:id/actuator/loggers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Proxies a POST to the loggers Actuator endpoint to change a logger level at runtime on the specified instance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

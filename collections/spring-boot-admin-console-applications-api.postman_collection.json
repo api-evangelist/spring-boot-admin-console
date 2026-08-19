@@ -1,0 +1,470 @@
+{
+  "item": [
+    {
+      "id": "8694e089-772e-472c-be1a-80e5fcf0410b",
+      "name": "Applications",
+      "description": {
+        "content": "Application registration and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "224096e8-1ff7-431d-af58-41ccdb04460b",
+          "name": "List Registered Applications",
+          "request": {
+            "name": "List Registered Applications",
+            "description": {
+              "content": "Returns all applications registered with the Spring Boot Admin server, grouped by application name. Each application may have multiple instances.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "445f6312-cfbf-42e1-816c-a394f9012d9c",
+              "name": "List of registered applications",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"my-spring-app\",\n    \"instances\": [\n      {\n        \"id\": \"abc123def456\",\n        \"version\": 769,\n        \"registration\": {\n          \"name\": \"my-spring-app\",\n          \"managementUrl\": \"http://localhost:8081/actuator\",\n          \"healthUrl\": \"http://localhost:8081/actuator/health\",\n          \"serviceUrl\": \"http://localhost:8081\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"registered\": true,\n        \"statusInfo\": {\n          \"status\": \"OFFLINE\",\n          \"details\": {\n            \"key_0\": false,\n            \"key_1\": \"string\"\n          }\n        },\n        \"statusTimestamp\": \"1986-10-20T09:21:29.418Z\",\n        \"info\": {\n          \"key_0\": 5431,\n          \"key_1\": \"string\",\n          \"key_2\": 9160.060200903683,\n          \"key_3\": \"string\",\n          \"key_4\": \"string\"\n        },\n        \"endpoints\": [\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"buildVersion\": \"string\",\n        \"tags\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      {\n        \"id\": \"abc123def456\",\n        \"version\": 9106,\n        \"registration\": {\n          \"name\": \"my-spring-app\",\n          \"managementUrl\": \"http://localhost:8081/actuator\",\n          \"healthUrl\": \"http://localhost:8081/actuator/health\",\n          \"serviceUrl\": \"http://localhost:8081\",\n          \"metadata\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"registered\": true,\n        \"statusInfo\": {\n          \"status\": \"RESTRICTED\",\n          \"details\": {\n            \"key_0\": \"string\",\n            \"key_1\": 2447,\n            \"key_2\": 7806.488349129355\n          }\n        },\n        \"statusTimestamp\": \"2023-06-03T00:10:54.467Z\",\n        \"info\": {\n          \"key_0\": 5676,\n          \"key_1\": 4295.427833303103\n        },\n        \"endpoints\": [\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"buildVersion\": \"string\",\n        \"tags\": {\n          \"key_0\": \"string\"\n        }\n      }\n    ],\n    \"status\": \"UP\"\n  },\n  {\n    \"name\": \"my-spring-app\",\n    \"instances\": [\n      {\n        \"id\": \"abc123def456\",\n        \"version\": 9574,\n        \"registration\": {\n          \"name\": \"my-spring-app\",\n          \"managementUrl\": \"http://localhost:8081/actuator\",\n          \"healthUrl\": \"http://localhost:8081/actuator/health\",\n          \"serviceUrl\": \"http://localhost:8081\",\n          \"metadata\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"registered\": false,\n        \"statusInfo\": {\n          \"status\": \"OFFLINE\",\n          \"details\": {\n            \"key_0\": 1046,\n            \"key_1\": true,\n            \"key_2\": \"string\"\n          }\n        },\n        \"statusTimestamp\": \"2013-10-29T09:05:39.034Z\",\n        \"info\": {\n          \"key_0\": 6361.316963736716\n        },\n        \"endpoints\": [\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"buildVersion\": \"string\",\n        \"tags\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      {\n        \"id\": \"abc123def456\",\n        \"version\": 7364,\n        \"registration\": {\n          \"name\": \"my-spring-app\",\n          \"managementUrl\": \"http://localhost:8081/actuator\",\n          \"healthUrl\": \"http://localhost:8081/actuator/health\",\n          \"serviceUrl\": \"http://localhost:8081\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"registered\": true,\n        \"statusInfo\": {\n          \"status\": \"RESTRICTED\",\n          \"details\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"statusTimestamp\": \"1969-04-06T01:48:06.958Z\",\n        \"info\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"endpoints\": [\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"buildVersion\": \"string\",\n        \"tags\": {\n          \"key_0\": \"string\"\n        }\n      }\n    ],\n    \"status\": \"UNKNOWN\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4af54985-1eb9-43bd-8c02-102bbebdfbc7",
+          "name": "Register Application",
+          "request": {
+            "name": "Register Application",
+            "description": {
+              "content": "Registers a new Spring Boot application with the Admin server. Typically called automatically by the spring-boot-admin-client dependency on startup.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"managementUrl\": \"<string>\",\n  \"healthUrl\": \"<string>\",\n  \"serviceUrl\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc091446-6f3c-48ff-8f12-bb1d44e209e7",
+              "name": "Application registered successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"my-spring-app\",\n  \"managementUrl\": \"http://localhost:8081/actuator\",\n  \"healthUrl\": \"http://localhost:8081/actuator/health\",\n  \"serviceUrl\": \"http://localhost:8081\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123def456\",\n  \"version\": 8944,\n  \"registration\": {\n    \"name\": \"my-spring-app\",\n    \"managementUrl\": \"http://localhost:8081/actuator\",\n    \"healthUrl\": \"http://localhost:8081/actuator/health\",\n    \"serviceUrl\": \"http://localhost:8081\",\n    \"metadata\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"registered\": true,\n  \"statusInfo\": {\n    \"status\": \"DOWN\",\n    \"details\": {\n      \"key_0\": 5057.783828673075,\n      \"key_1\": \"string\"\n    }\n  },\n  \"statusTimestamp\": \"1957-12-16T13:54:12.853Z\",\n  \"info\": {\n    \"key_0\": \"string\"\n  },\n  \"endpoints\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"buildVersion\": \"string\",\n  \"tags\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0550e32-1fa7-4a8f-afff-fa0cbce65f45",
+              "name": "Invalid registration payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"my-spring-app\",\n  \"managementUrl\": \"http://localhost:8081/actuator\",\n  \"healthUrl\": \"http://localhost:8081/actuator/health\",\n  \"serviceUrl\": \"http://localhost:8081\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb65f3ea-d265-44cf-a585-4741ccf292d8",
+          "name": "Get Application",
+          "request": {
+            "name": "Get Application",
+            "description": {
+              "content": "Returns all instances for a specific application grouped by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Application name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61771511-4317-42cf-bd1a-b856973666ef",
+              "name": "Application with all instances",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Application name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"my-spring-app\",\n  \"instances\": [\n    {\n      \"id\": \"abc123def456\",\n      \"version\": 9079,\n      \"registration\": {\n        \"name\": \"my-spring-app\",\n        \"managementUrl\": \"http://localhost:8081/actuator\",\n        \"healthUrl\": \"http://localhost:8081/actuator/health\",\n        \"serviceUrl\": \"http://localhost:8081\",\n        \"metadata\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"registered\": false,\n      \"statusInfo\": {\n        \"status\": \"OFFLINE\",\n        \"details\": {\n          \"key_0\": 4977.441270204409,\n          \"key_1\": 8558\n        }\n      },\n      \"statusTimestamp\": \"1975-11-11T06:13:27.788Z\",\n      \"info\": {\n        \"key_0\": \"string\",\n        \"key_1\": 6146,\n        \"key_2\": true\n      },\n      \"endpoints\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"buildVersion\": \"string\",\n      \"tags\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"id\": \"abc123def456\",\n      \"version\": 9044,\n      \"registration\": {\n        \"name\": \"my-spring-app\",\n        \"managementUrl\": \"http://localhost:8081/actuator\",\n        \"healthUrl\": \"http://localhost:8081/actuator/health\",\n        \"serviceUrl\": \"http://localhost:8081\",\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"registered\": false,\n      \"statusInfo\": {\n        \"status\": \"OFFLINE\",\n        \"details\": {\n          \"key_0\": true\n        }\n      },\n      \"statusTimestamp\": \"2026-01-24T08:42:27.504Z\",\n      \"info\": {\n        \"key_0\": 3604,\n        \"key_1\": 7074.266454343555\n      },\n      \"endpoints\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"buildVersion\": \"string\",\n      \"tags\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    }\n  ],\n  \"status\": \"UP\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c1f6e74-bcbc-40d9-ad59-536ca64d90e0",
+              "name": "Application not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Application name"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54c2f958-e809-46d4-9c77-503d1e2bc8a2",
+          "name": "Deregister Application",
+          "request": {
+            "name": "Deregister Application",
+            "description": {
+              "content": "Deregisters all instances of the specified application from the Admin server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Application name to deregister"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16dd23cd-9b90-452b-9744-04e5fdd3b626",
+              "name": "Application deregistered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Application name to deregister"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d3c55c97-627c-4d41-b0d7-57f653d0a840",
+              "name": "Application not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Application name to deregister"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4fd4510b-0c22-4eeb-9b0a-1e4aa54d6130",
+    "name": "Spring Boot Admin Server Applications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Spring Boot Admin server. Manages application registration, instance monitoring, Actuator endpoint proxying, and lifecycle event streaming. Spring Boot Admin is a community project by codecentric AG that provides a web UI for monitoring and managing Spring Boot applications via their Actuator endpoints.\n\nContact Support:\n Name: codecentric AG",
+      "type": "text/plain"
+    }
+  }
+}

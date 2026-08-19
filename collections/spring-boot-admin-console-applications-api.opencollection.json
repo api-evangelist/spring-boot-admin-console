@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spring Boot Admin Server Applications API",
+    "version": "3.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Registered Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/applications"
+          },
+          "docs": "Returns all applications registered with the Spring Boot Admin server, grouped by application name. Each application may have multiple instances."
+        },
+        {
+          "info": {
+            "name": "Register Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new Spring Boot application with the Admin server. Typically called automatically by the spring-boot-admin-client dependency on startup."
+        },
+        {
+          "info": {
+            "name": "Get Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/applications/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              }
+            ]
+          },
+          "docs": "Returns all instances for a specific application grouped by name."
+        },
+        {
+          "info": {
+            "name": "Deregister Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/applications/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Application name to deregister"
+              }
+            ]
+          },
+          "docs": "Deregisters all instances of the specified application from the Admin server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
