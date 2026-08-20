@@ -38,6 +38,9 @@ apis:
   baseURL: http://localhost:8080/applications
   humanURL: https://codecentric.github.io/spring-boot-admin/current/#_applications
   tags:
+  - Application
+  - Registration
+  tags_raw:
   - Applications
   - Registration
   properties:
@@ -63,6 +66,10 @@ apis:
   baseURL: http://localhost:8080/instances/events
   humanURL: https://codecentric.github.io/spring-boot-admin/current/#_event-store
   tags:
+  - Event
+  - Notification
+  - SSE
+  tags_raw:
   - Events
   - Notifications
   - SSE
@@ -77,6 +84,10 @@ apis:
   humanURL: https://codecentric.github.io/spring-boot-admin/current/#_notifications
   tags:
   - Alerts
+  - Notification
+  - Webhook
+  tags_raw:
+  - Alerts
   - Notifications
   - Webhooks
   properties:
@@ -88,6 +99,8 @@ apis:
   humanURL: https://codecentric.github.io/spring-boot-admin/current/
   baseURL: http://localhost:8080
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -108,6 +121,8 @@ apis:
   humanURL: https://codecentric.github.io/spring-boot-admin/current/
   baseURL: http://localhost:8080
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
