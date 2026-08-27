@@ -10,12 +10,13 @@ accessModel:
   onboarding: open
   trial: false
   try_now: false
-  public: true
+  public: false
   label: Enterprise · Open access
-  confidence: medium
+  confidence: low
+  try_now_blocked_by: loopback
   source:
   - plans
-  generated: '2026-07-22'
+  generated: '2026-08-26'
   method: derived
 image: >-
   https://raw.githubusercontent.com/codecentric/spring-boot-admin/master/spring-boot-admin-docs/src/site/resources/images/spring-boot-admin-logo.png
