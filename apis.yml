@@ -5,6 +5,18 @@ description: >-
   provides application registration, health monitoring, log level management, metric graphs, instance lifecycle event
   tracking, and notification integrations (email, Slack, PagerDuty, OpsGenie, Hipchat, Teams, Telegram).
 url: https://github.com/codecentric/spring-boot-admin
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: open
@@ -163,6 +175,10 @@ maintainers:
     url: https://www.codecentric.de/
     email: info@codecentric.de
 common:
+  - type: IssueTracker
+    url: https://github.com/codecentric/spring-boot-admin/issues
+  - type: ContributionGuide
+    url: https://github.com/codecentric/spring-boot-admin/blob/master/CONTRIBUTING.md
   - type: AgenticAccess
     url: agentic-access/spring-boot-admin-console-agentic-access.yml
   - url: https://blog.codecentric.de/feed/
