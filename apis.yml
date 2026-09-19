@@ -34,6 +34,13 @@ image: >-
   https://raw.githubusercontent.com/codecentric/spring-boot-admin/master/spring-boot-admin-docs/src/site/resources/images/spring-boot-admin-logo.png
 kind: opensource
 tags:
+  - Actuators
+  - Administration
+  - Java
+  - Microservices
+  - Monitoring
+  - Spring Boot
+tags_raw:
   - Actuator
   - Administration
   - Java
@@ -66,6 +73,10 @@ apis:
   baseURL: http://localhost:8080/instances
   humanURL: https://codecentric.github.io/spring-boot-admin/current/#_instances
   tags:
+  - Actuators
+  - Instances
+  - Monitoring
+  tags_raw:
   - Actuator
   - Instances
   - Monitoring
