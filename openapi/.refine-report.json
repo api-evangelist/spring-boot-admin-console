@@ -1,9 +1,7 @@
 {
   "provider": "spring-boot-admin-console",
   "sources": [
-    "spring-boot-admin-console-applications-api-openapi.yml",
-    "spring-boot-admin-console-events-api-openapi.yml",
-    "spring-boot-admin-console-instances-api-openapi.yml"
+    "_original/spring-boot-admin-console-openapi.yml"
   ],
   "outputs": [
     "spring-boot-admin-console-applications-api-openapi.yml",
@@ -13,6 +11,14 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "spring-boot-admin-console-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "spring-boot-admin-console-applications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spring-boot-admin-console-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spring-boot-admin-console-instances-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

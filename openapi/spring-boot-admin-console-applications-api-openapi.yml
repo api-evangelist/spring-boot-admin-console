@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Spring Boot Admin Server Applications API
   description: REST API for the Spring Boot Admin server. Manages application registration, instance monitoring, Actuator endpoint proxying, and lifecycle event streaming. Spring Boot Admin is a community project by codecentric AG that provides a web UI for monitoring and managing Spring Boot applications via their Actuator endpoints.
@@ -144,36 +144,6 @@ components:
           description: Custom tags for this instance
           additionalProperties:
             type: string
-    ApplicationRegistration:
-      type: object
-      description: Payload to register a Spring Boot application with the Admin server
-      required:
-      - name
-      - managementUrl
-      - healthUrl
-      - serviceUrl
-      properties:
-        name:
-          type: string
-          description: Application name (typically spring.application.name)
-          example: my-spring-app
-        managementUrl:
-          type: string
-          description: URL of the management (Actuator) endpoint base
-          example: http://localhost:8081/actuator
-        healthUrl:
-          type: string
-          description: URL of the health endpoint
-          example: http://localhost:8081/actuator/health
-        serviceUrl:
-          type: string
-          description: URL of the service root
-          example: http://localhost:8081
-        metadata:
-          type: object
-          description: Additional metadata key-value pairs
-          additionalProperties:
-            type: string
     Application:
       type: object
       description: A logical grouping of application instances sharing the same name
@@ -214,3 +184,33 @@ components:
           type: object
           description: Additional status details from the health endpoint
           additionalProperties: true
+    ApplicationRegistration:
+      type: object
+      description: Payload to register a Spring Boot application with the Admin server
+      required:
+      - name
+      - managementUrl
+      - healthUrl
+      - serviceUrl
+      properties:
+        name:
+          type: string
+          description: Application name (typically spring.application.name)
+          example: my-spring-app
+        managementUrl:
+          type: string
+          description: URL of the management (Actuator) endpoint base
+          example: http://localhost:8081/actuator
+        healthUrl:
+          type: string
+          description: URL of the health endpoint
+          example: http://localhost:8081/actuator/health
+        serviceUrl:
+          type: string
+          description: URL of the service root
+          example: http://localhost:8081
+        metadata:
+          type: object
+          description: Additional metadata key-value pairs
+          additionalProperties:
+            type: string
