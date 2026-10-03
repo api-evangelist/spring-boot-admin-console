@@ -259,7 +259,7 @@ paths:
                   - WARN
                   - ERROR
                   - FATAL
-                  - false
+                  - 'OFF'
       responses:
         '204':
           description: Logger level updated
@@ -267,6 +267,54 @@ paths:
           description: Instance not found
 components:
   schemas:
+    ApplicationRegistration:
+      type: object
+      description: Payload to register a Spring Boot application with the Admin server
+      required:
+      - name
+      - managementUrl
+      - healthUrl
+      - serviceUrl
+      properties:
+        name:
+          type: string
+          description: Application name (typically spring.application.name)
+          example: my-spring-app
+        managementUrl:
+          type: string
+          description: URL of the management (Actuator) endpoint base
+          example: http://localhost:8081/actuator
+        healthUrl:
+          type: string
+          description: URL of the health endpoint
+          example: http://localhost:8081/actuator/health
+        serviceUrl:
+          type: string
+          description: URL of the service root
+          example: http://localhost:8081
+        metadata:
+          type: object
+          description: Additional metadata key-value pairs
+          additionalProperties:
+            type: string
+    StatusInfo:
+      type: object
+      description: Status information for an application instance
+      properties:
+        status:
+          type: string
+          description: Current instance status
+          enum:
+          - UP
+          - DOWN
+          - OUT_OF_SERVICE
+          - UNKNOWN
+          - RESTRICTED
+          - OFFLINE
+        details:
+          type: object
+          description: Additional status details from the health endpoint
+          additionalProperties: true
     HealthResponse:
       type: object
       description: Health status from a proxied instance health endpoint
@@ -335,54 +383,6 @@ components:
         tags:
           type: object
           description: Custom tags for this instance
-          additionalProperties:
-            type: string
-    StatusInfo:
-      type: object
-      description: Status information for an application instance
-      properties:
-        status:
-          type: string
-          description: Current instance status
-          enum:
-          - UP
-          - DOWN
-          - OUT_OF_SERVICE
-          - UNKNOWN
-          - RESTRICTED
-          - OFFLINE
-        details:
-          type: object
-          description: Additional status details from the health endpoint
-          additionalProperties: true
-    ApplicationRegistration:
-      type: object
-      description: Payload to register a Spring Boot application with the Admin server
-      required:
-      - name
-      - managementUrl
-      - healthUrl
-      - serviceUrl
-      properties:
-        name:
-          type: string
-          description: Application name (typically spring.application.name)
-          example: my-spring-app
-        managementUrl:
-          type: string
-          description: URL of the management (Actuator) endpoint base
-          example: http://localhost:8081/actuator
-        healthUrl:
-          type: string
-          description: URL of the health endpoint
-          example: http://localhost:8081/actuator/health
-        serviceUrl:
-          type: string
-          description: URL of the service root
-          example: http://localhost:8081
-        metadata:
-          type: object
-          description: Additional metadata key-value pairs
           additionalProperties:
             type: string
     ActuatorEndpoints:

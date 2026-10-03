@@ -127,46 +127,6 @@ components:
           description: Additional metadata key-value pairs
           additionalProperties:
             type: string
-    Application:
-      type: object
-      description: A logical grouping of application instances sharing the same name
-      properties:
-        name:
-          type: string
-          description: Application name
-          example: my-spring-app
-        instances:
-          type: array
-          description: Running instances of this application
-          items:
-            $ref: '#/components/schemas/Instance'
-        status:
-          type: string
-          description: Aggregated status across all instances
-          enum:
-          - UP
-          - DOWN
-          - OUT_OF_SERVICE
-          - UNKNOWN
-          - RESTRICTED
-    StatusInfo:
-      type: object
-      description: Status information for an application instance
-      properties:
-        status:
-          type: string
-          description: Current instance status
-          enum:
-          - UP
-          - DOWN
-          - OUT_OF_SERVICE
-          - UNKNOWN
-          - RESTRICTED
-          - OFFLINE
-        details:
-          type: object
-          description: Additional status details from the health endpoint
-          additionalProperties: true
     Instance:
       type: object
       description: A single registered Spring Boot application instance
@@ -214,3 +174,43 @@ components:
           description: Custom tags for this instance
           additionalProperties:
             type: string
+    StatusInfo:
+      type: object
+      description: Status information for an application instance
+      properties:
+        status:
+          type: string
+          description: Current instance status
+          enum:
+          - UP
+          - DOWN
+          - OUT_OF_SERVICE
+          - UNKNOWN
+          - RESTRICTED
+          - OFFLINE
+        details:
+          type: object
+          description: Additional status details from the health endpoint
+          additionalProperties: true
+    Application:
+      type: object
+      description: A logical grouping of application instances sharing the same name
+      properties:
+        name:
+          type: string
+          description: Application name
+          example: my-spring-app
+        instances:
+          type: array
+          description: Running instances of this application
+          items:
+            $ref: '#/components/schemas/Instance'
+        status:
+          type: string
+          description: Aggregated status across all instances
+          enum:
+          - UP
+          - DOWN
+          - OUT_OF_SERVICE
+          - UNKNOWN
+          - RESTRICTED
