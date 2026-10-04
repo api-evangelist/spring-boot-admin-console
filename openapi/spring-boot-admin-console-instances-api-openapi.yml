@@ -267,36 +267,20 @@ paths:
           description: Instance not found
 components:
   schemas:
-    ApplicationRegistration:
+    ActuatorEndpoints:
       type: object
-      description: Payload to register a Spring Boot application with the Admin server
-      required:
-      - name
-      - managementUrl
-      - healthUrl
-      - serviceUrl
+      description: Available Actuator endpoints discovered for an instance
       properties:
-        name:
-          type: string
-          description: Application name (typically spring.application.name)
-          example: my-spring-app
-        managementUrl:
-          type: string
-          description: URL of the management (Actuator) endpoint base
-          example: http://localhost:8081/actuator
-        healthUrl:
-          type: string
-          description: URL of the health endpoint
-          example: http://localhost:8081/actuator/health
-        serviceUrl:
-          type: string
-          description: URL of the service root
-          example: http://localhost:8081
-        metadata:
+        _links:
           type: object
-          description: Additional metadata key-value pairs
+          description: HATEOAS links to available endpoints
           additionalProperties:
-            type: string
+            type: object
+            properties:
+              href:
+                type: string
+              templated:
+                type: boolean
     StatusInfo:
       type: object
       description: Status information for an application instance
@@ -338,6 +322,36 @@ components:
               details:
                 type: object
                 additionalProperties: true
+    ApplicationRegistration:
+      type: object
+      description: Payload to register a Spring Boot application with the Admin server
+      required:
+      - name
+      - managementUrl
+      - healthUrl
+      - serviceUrl
+      properties:
+        name:
+          type: string
+          description: Application name (typically spring.application.name)
+          example: my-spring-app
+        managementUrl:
+          type: string
+          description: URL of the management (Actuator) endpoint base
+          example: http://localhost:8081/actuator
+        healthUrl:
+          type: string
+          description: URL of the health endpoint
+          example: http://localhost:8081/actuator/health
+        serviceUrl:
+          type: string
+          description: URL of the service root
+          example: http://localhost:8081
+        metadata:
+          type: object
+          description: Additional metadata key-value pairs
+          additionalProperties:
+            type: string
     Instance:
       type: object
       description: A single registered Spring Boot application instance
@@ -385,17 +399,3 @@ components:
           description: Custom tags for this instance
           additionalProperties:
             type: string
-    ActuatorEndpoints:
-      type: object
-      description: Available Actuator endpoints discovered for an instance
-      properties:
-        _links:
-          type: object
-          description: HATEOAS links to available endpoints
-          additionalProperties:
-            type: object
-            properties:
-              href:
-                type: string
-              templated:
-                type: boolean

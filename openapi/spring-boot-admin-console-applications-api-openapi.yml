@@ -97,6 +97,24 @@ paths:
           description: Application not found
 components:
   schemas:
+    StatusInfo:
+      type: object
+      description: Status information for an application instance
+      properties:
+        status:
+          type: string
+          description: Current instance status
+          enum:
+          - UP
+          - DOWN
+          - OUT_OF_SERVICE
+          - UNKNOWN
+          - RESTRICTED
+          - OFFLINE
+        details:
+          type: object
+          description: Additional status details from the health endpoint
+          additionalProperties: true
     ApplicationRegistration:
       type: object
       description: Payload to register a Spring Boot application with the Admin server
@@ -174,24 +192,6 @@ components:
           description: Custom tags for this instance
           additionalProperties:
             type: string
-    StatusInfo:
-      type: object
-      description: Status information for an application instance
-      properties:
-        status:
-          type: string
-          description: Current instance status
-          enum:
-          - UP
-          - DOWN
-          - OUT_OF_SERVICE
-          - UNKNOWN
-          - RESTRICTED
-          - OFFLINE
-        details:
-          type: object
-          description: Additional status details from the health endpoint
-          additionalProperties: true
     Application:
       type: object
       description: A logical grouping of application instances sharing the same name
