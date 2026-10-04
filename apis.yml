@@ -189,6 +189,9 @@ maintainers:
     url: https://www.codecentric.de/
     email: info@codecentric.de
 common:
+  - type: CapabilityMap
+    url: capabilities/spring-boot-admin-console-capability-edges.yml
+    name: Spring Boot Admin Console Business Capability Map
   - type: IssueTracker
     url: https://github.com/codecentric/spring-boot-admin/issues
   - type: ContributionGuide
