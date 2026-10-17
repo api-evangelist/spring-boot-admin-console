@@ -97,6 +97,53 @@ paths:
           description: Application not found
 components:
   schemas:
+    Instance:
+      type: object
+      description: A single registered Spring Boot application instance
+      properties:
+        id:
+          type: string
+          description: Unique instance identifier assigned by Admin server
+          example: abc123def456
+        version:
+          type: integer
+          description: Optimistic locking version
+        registration:
+          $ref: '#/components/schemas/ApplicationRegistration'
+        registered:
+          type: boolean
+          description: Whether the instance is currently registered
+        statusInfo:
+          $ref: '#/components/schemas/StatusInfo'
+        statusTimestamp:
+          type: string
+          format: date-time
+          description: Timestamp of the last status change
+        info:
+          type: object
+          description: Application info collected from the /info Actuator endpoint
+          additionalProperties: true
+        endpoints:
+          type: array
+          description: Available Actuator endpoints for this instance
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Endpoint ID (health, metrics, loggers, etc.)
+              url:
+                type: string
+                description: Endpoint URL
+        buildVersion:
+          type: string
+          description: Application build version from /info
+          nullable: true
+        tags:
+          type: object
+          description: Custom tags for this instance
+          additionalProperties:
+            type: string
     StatusInfo:
       type: object
       description: Status information for an application instance
@@ -143,53 +190,6 @@ components:
         metadata:
           type: object
           description: Additional metadata key-value pairs
-          additionalProperties:
-            type: string
-    Instance:
-      type: object
-      description: A single registered Spring Boot application instance
-      properties:
-        id:
-          type: string
-          description: Unique instance identifier assigned by Admin server
-          example: abc123def456
-        version:
-          type: integer
-          description: Optimistic locking version
-        registration:
-          $ref: '#/components/schemas/ApplicationRegistration'
-        registered:
-          type: boolean
-          description: Whether the instance is currently registered
-        statusInfo:
-          $ref: '#/components/schemas/StatusInfo'
-        statusTimestamp:
-          type: string
-          format: date-time
-          description: Timestamp of the last status change
-        info:
-          type: object
-          description: Application info collected from the /info Actuator endpoint
-          additionalProperties: true
-        endpoints:
-          type: array
-          description: Available Actuator endpoints for this instance
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Endpoint ID (health, metrics, loggers, etc.)
-              url:
-                type: string
-                description: Endpoint URL
-        buildVersion:
-          type: string
-          description: Application build version from /info
-          nullable: true
-        tags:
-          type: object
-          description: Custom tags for this instance
           additionalProperties:
             type: string
     Application:

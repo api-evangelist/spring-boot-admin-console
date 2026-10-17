@@ -32,24 +32,6 @@ paths:
                 $ref: '#/components/schemas/InstanceEvent'
 components:
   schemas:
-    StatusInfo:
-      type: object
-      description: Status information for an application instance
-      properties:
-        status:
-          type: string
-          description: Current instance status
-          enum:
-          - UP
-          - DOWN
-          - OUT_OF_SERVICE
-          - UNKNOWN
-          - RESTRICTED
-          - OFFLINE
-        details:
-          type: object
-          description: Additional status details from the health endpoint
-          additionalProperties: true
     InstanceEvent:
       type: object
       description: A lifecycle event for an application instance (delivered via SSE)
@@ -79,4 +61,22 @@ components:
         info:
           type: object
           description: Updated info payload (for INFO_CHANGED events)
+          additionalProperties: true
+    StatusInfo:
+      type: object
+      description: Status information for an application instance
+      properties:
+        status:
+          type: string
+          description: Current instance status
+          enum:
+          - UP
+          - DOWN
+          - OUT_OF_SERVICE
+          - UNKNOWN
+          - RESTRICTED
+          - OFFLINE
+        details:
+          type: object
+          description: Additional status details from the health endpoint
           additionalProperties: true

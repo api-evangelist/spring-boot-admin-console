@@ -281,47 +281,6 @@ components:
                 type: string
               templated:
                 type: boolean
-    StatusInfo:
-      type: object
-      description: Status information for an application instance
-      properties:
-        status:
-          type: string
-          description: Current instance status
-          enum:
-          - UP
-          - DOWN
-          - OUT_OF_SERVICE
-          - UNKNOWN
-          - RESTRICTED
-          - OFFLINE
-        details:
-          type: object
-          description: Additional status details from the health endpoint
-          additionalProperties: true
-    HealthResponse:
-      type: object
-      description: Health status from a proxied instance health endpoint
-      properties:
-        status:
-          type: string
-          description: Health status
-          enum:
-          - UP
-          - DOWN
-          - OUT_OF_SERVICE
-          - UNKNOWN
-        components:
-          type: object
-          description: Component health details
-          additionalProperties:
-            type: object
-            properties:
-              status:
-                type: string
-              details:
-                type: object
-                additionalProperties: true
     ApplicationRegistration:
       type: object
       description: Payload to register a Spring Boot application with the Admin server
@@ -352,6 +311,29 @@ components:
           description: Additional metadata key-value pairs
           additionalProperties:
             type: string
+    HealthResponse:
+      type: object
+      description: Health status from a proxied instance health endpoint
+      properties:
+        status:
+          type: string
+          description: Health status
+          enum:
+          - UP
+          - DOWN
+          - OUT_OF_SERVICE
+          - UNKNOWN
+        components:
+          type: object
+          description: Component health details
+          additionalProperties:
+            type: object
+            properties:
+              status:
+                type: string
+              details:
+                type: object
+                additionalProperties: true
     Instance:
       type: object
       description: A single registered Spring Boot application instance
@@ -399,3 +381,21 @@ components:
           description: Custom tags for this instance
           additionalProperties:
             type: string
+    StatusInfo:
+      type: object
+      description: Status information for an application instance
+      properties:
+        status:
+          type: string
+          description: Current instance status
+          enum:
+          - UP
+          - DOWN
+          - OUT_OF_SERVICE
+          - UNKNOWN
+          - RESTRICTED
+          - OFFLINE
+        details:
+          type: object
+          description: Additional status details from the health endpoint
+          additionalProperties: true
