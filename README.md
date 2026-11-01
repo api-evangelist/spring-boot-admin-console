@@ -1,4 +1,4 @@
-# Spring Boot Admin Console (spring-boot-admin-console)
+# Spring Boot Admin Console
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,134 +66,119 @@
 
 Spring Boot Admin is a community project by codecentric AG that provides a web-based administration UI for managing and monitoring Spring Boot applications. It visualizes Spring Boot Actuator endpoints in a graphical interface and provides application registration, health monitoring, log level management, metric graphs, instance lifecycle event tracking, and notification integrations (email, Slack, PagerDuty, OpsGenie, Hipchat, Teams, Telegram).
 
-**APIs.json:** [https://github.com/codecentric/spring-boot-admin](https://github.com/codecentric/spring-boot-admin)
+**Areas:** Actuators · Administration · Java · Microservices · Monitoring · Spring Boot
 
-## Tags
+## Spring Boot Admin Console on APIs.io
 
-- Actuator
-- Administration
-- Java
-- Microservices
-- Monitoring
-- Spring Boot
+Everything profiled for Spring Boot Admin Console is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/spring-boot-admin-console/](https://apis.io/providers/spring-boot-admin-console/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
+- [Applications API](https://apis.io/apis/spring-boot-admin-console/applications-api/) — Manage registered Spring Boot applications. Applications are logical groupings of instances sharing the same name and management URL base.
+- [Instances API](https://apis.io/apis/spring-boot-admin-console/instances-api/) — Manage individual application instances. Each instance represents a running Spring Boot application registered with the Admin server. Supports health…
+- [Events API](https://apis.io/apis/spring-boot-admin-console/events-api/) — Lifecycle event stream for application instances using Server-Sent Events (SSE). Events include status changes, registration, deregistration, and info updates.
+- [Notifications API](https://apis.io/apis/spring-boot-admin-console/notifications-api/) — Configure and trigger notification channels for application lifecycle events. Supports email, Slack, PagerDuty, OpsGenie, Microsoft Teams, Telegram, and…
+- [Spring Boot Admin Console Applications API](https://apis.io/apis/spring-boot-admin-console/spring-boot-admin-console-applications-api/) — Application registration and management
+- [Spring Boot Admin Console Events API](https://apis.io/apis/spring-boot-admin-console/spring-boot-admin-console-events-api/) — Instance lifecycle event stream
+- [Spring Boot Admin Console Instances API](https://apis.io/apis/spring-boot-admin-console/spring-boot-admin-console-instances-api/) — Application instance monitoring and management
 
-## APIs
+### Published properties
 
-### Spring Boot Admin Server API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-REST API for the Spring Boot Admin server that manages application registration, retrieves application and instance information, proxies Actuator endpoints, and streams lifecycle events via Server-Sent Events.
+#### Agentic access (1)
 
-- **Human URL:** [https://codecentric.github.io/spring-boot-admin/current/](https://codecentric.github.io/spring-boot-admin/current/)
-- **Base URL:** `http://localhost:8080`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Spring Boot Admin Console Agentic Access](https://apis.io/agentic-access/spring-boot-admin-console/spring-boot-admin-console-agentic-access/)
 
-- Administration
-- Monitoring
-- Server
+#### JSON Schema (2)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://codecentric.github.io/spring-boot-admin/current/)
-- [GitHub Repository](https://github.com/codecentric/spring-boot-admin)
-- [OpenAPI](openapi/spring-boot-admin-console-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/spring-boot-admin-console.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spring-boot-admin-console.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Spectral  Rules](rules/spring-boot-admin-console-rules.yml)
-- [Maven  Central](https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-server)
-- [Release Notes](https://github.com/codecentric/spring-boot-admin/releases)
+- [Spring Boot Admin Instance Event](https://apis.io/schemas/spring-boot-admin-console/spring-boot-admin-console-event/)
+- [Spring Boot Admin Instance](https://apis.io/schemas/spring-boot-admin-console/spring-boot-admin-console-instance/)
 
-### Applications API
+#### JSON Structure (1)
 
-Manage registered Spring Boot applications. Applications are logical groupings of instances sharing the same name and management URL base.
+Data models expressed in JSON Structure.
 
-- **Human URL:** [https://codecentric.github.io/spring-boot-admin/current/#_applications](https://codecentric.github.io/spring-boot-admin/current/#_applications)
-- **Base URL:** `http://localhost:8080/applications`
+- [Spring Boot Admin Console Structure](https://apis.io/json-structure/spring-boot-admin-console/spring-boot-admin-console-structure/)
 
-#### Tags
+#### JSON-LD (1)
 
-- Applications
-- Registration
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Spring Boot Admin Console Context](https://apis.io/jsonld/spring-boot-admin-console/spring-boot-admin-console-context/)
 
-- [Documentation](https://codecentric.github.io/spring-boot-admin/current/#_applications)
-- [Postman Collection](collections/spring-boot-admin-console.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spring-boot-admin-console.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Vocabulary (1)
 
-### Instances API
+The provider's domain terms, defined.
 
-Manage individual application instances. Each instance represents a running Spring Boot application registered with the Admin server. Supports health monitoring, Actuator endpoint proxying, and deregistration.
+- [Spring Boot Admin Console Vocabulary](https://apis.io/vocabularies/spring-boot-admin-console/spring-boot-admin-console-vocabulary/)
 
-- **Human URL:** [https://codecentric.github.io/spring-boot-admin/current/#_instances](https://codecentric.github.io/spring-boot-admin/current/#_instances)
-- **Base URL:** `http://localhost:8080/instances`
+#### Examples (3)
 
-#### Tags
+Example requests and responses.
 
-- Actuator
-- Instances
-- Monitoring
+- [Spring Boot Admin Console Get Instance Health Example](https://apis.io/examples/spring-boot-admin-console/spring-boot-admin-console-get-instance-health-example/)
+- [Spring Boot Admin Console List Applications Example](https://apis.io/examples/spring-boot-admin-console/spring-boot-admin-console-list-applications-example/)
+- [Spring Boot Admin Console Register Application Example](https://apis.io/examples/spring-boot-admin-console/spring-boot-admin-console-register-application-example/)
 
-#### Properties
+#### Collections (4)
 
-- [Documentation](https://codecentric.github.io/spring-boot-admin/current/#_instances)
-- [Postman Collection](collections/spring-boot-admin-console.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spring-boot-admin-console.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### Events API
+- [Spring Boot Admin Server API](https://apis.io/collections/spring-boot-admin-console/open-spring-boot-admin-console/)
+- [Spring Boot Admin Server Applications API](https://apis.io/collections/spring-boot-admin-console/open-spring-boot-admin-console-applications-api/)
+- [Spring Boot Admin Server Applications Events API](https://apis.io/collections/spring-boot-admin-console/open-spring-boot-admin-console-events-api/)
+- [Spring Boot Admin Server Applications Instances API](https://apis.io/collections/spring-boot-admin-console/open-spring-boot-admin-console-instances-api/)
 
-Lifecycle event stream for application instances using Server-Sent Events (SSE). Events include status changes, registration, deregistration, and info updates.
+#### Governance rules (2)
 
-- **Human URL:** [https://codecentric.github.io/spring-boot-admin/current/#_event-store](https://codecentric.github.io/spring-boot-admin/current/#_event-store)
-- **Base URL:** `http://localhost:8080/instances/events`
+Spectral rulesets for the provider's contracts.
 
-#### Tags
+- [Spring Boot Admin Console — jsonschema rules](https://apis.io/rules/spring-boot-admin-console/spring-boot-admin-console-jsonschema-spectral-rules/)
+- [Spring Boot Admin Console API Rules](https://apis.io/rules/spring-boot-admin-console/spring-boot-admin-console-rules/)
 
-- Events
-- Notifications
-- SSE
+#### Plans and pricing (1)
 
-#### Properties
+Published plans, tiers and prices.
 
-- [Documentation](https://codecentric.github.io/spring-boot-admin/current/#_event-store)
-- [Postman Collection](collections/spring-boot-admin-console.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spring-boot-admin-console.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Spring Boot Admin Console Plans Pricing](https://apis.io/plans/spring-boot-admin-console/spring-boot-admin-console-plans-pricing/)
 
-### Notifications API
+#### Rate limits (1)
 
-Configure and trigger notification channels for application lifecycle events. Supports email, Slack, PagerDuty, OpsGenie, Microsoft Teams, Telegram, and custom webhook notifications.
+Published request limits.
 
-- **Human URL:** [https://codecentric.github.io/spring-boot-admin/current/#_notifications](https://codecentric.github.io/spring-boot-admin/current/#_notifications)
-- **Base URL:** `http://localhost:8080`
+- [Spring Boot Admin Console Rate Limits](https://apis.io/rate-limits/spring-boot-admin-console/spring-boot-admin-console-rate-limits/)
 
-#### Tags
+#### FinOps (1)
 
-- Alerts
-- Notifications
-- Webhooks
+What the API costs to run, by operation.
 
-#### Properties
+- [Spring Boot Admin Console Finops](https://apis.io/finops/spring-boot-admin-console/spring-boot-admin-console-finops/)
 
-- [Documentation](https://codecentric.github.io/spring-boot-admin/current/#_notifications)
-- [Postman Collection](collections/spring-boot-admin-console.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spring-boot-admin-console.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+## Where to find this API
 
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [GitHub Repository](https://github.com/codecentric/spring-boot-admin)
-- [Issue  Tracker](https://github.com/codecentric/spring-boot-admin/issues)
-- [Getting  Started  Guide](https://codecentric.github.io/spring-boot-admin/current/#getting-started)
-- [Reference  Documentation](https://codecentric.github.io/spring-boot-admin/current/)
-- [Maven  Central](https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin)
-- [License](https://github.com/codecentric/spring-boot-admin/blob/master/LICENSE)
-- [Community](https://gitter.im/codecentric/spring-boot-admin)
+- [Blog](https://blog.codecentric.de/feed/)
 
-## Maintainers
+## API Evangelist rating
 
-**Email:** info@codecentric.de
-**URL:** https://www.codecentric.de/
+**Unrated** — no public website could be reached for this company, so there was almost nothing to measure and nothing a reader could check.
+
+This is not a score of zero. No rating is published for this company. If that is wrong because something public exists that we missed, say so on this repository or email [info@apievangelist.com](mailto:info@apievangelist.com) and it will be re-run — free, and no justification needed.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Spring Boot Admin Console: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/spring-boot-admin-console/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
